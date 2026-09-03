@@ -32,7 +32,7 @@ html, body {
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 5vw; /* Texto de boas-vindas bem grande */
+  font-size: 5vw;
   font-weight: bold;
   cursor: pointer;
   text-align: center;
@@ -58,14 +58,14 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around; /* Preenche de cima a baixo */
+  justify-content: space-around;
   width: 100vw;
   height: 100vh;
   padding: 6vh 0;
   text-align: center;
 }
 
-/* Logo Superior (Aumentada para 40% da largura do totem) */
+/* Logo Superior */
 .logo-area .logo-circle {
   width: 40vw;
   height: 40vw;
@@ -84,9 +84,9 @@ html, body {
   object-fit: contain;
 }
 
-/* Títulos Gigantes */
+/* Títulos */
 .title-area h1 {
-  font-size: 5.5vw; /* Muito maior e legível à distância */
+  font-size: 5.5vw;
   line-height: 1.2;
   margin-bottom: 1.5vh;
   font-weight: 800;
@@ -99,7 +99,7 @@ html, body {
   letter-spacing: 2px;
 }
 
-/* Botão Principal Destaque */
+/* Botão Principal */
 .btn-quiz {
   background-color: #ffcc00;
   color: #000;
@@ -118,7 +118,7 @@ html, body {
   background-color: #e6b800;
 }
 
-/* --- CARROSSEIS GIGANTES DE BORDA A BORDA --- */
+/* --- CARROSSEIS CONTINUOS --- */
 .partners-section {
   width: 100vw;
   display: flex;
@@ -149,18 +149,18 @@ html, body {
   will-change: transform;
 }
 
-/* Animações com tempo ajustado para deslizar suavemente */
+/* Animações com tempo ajustado para velocidade agradável */
 .track-left {
-  animation: scrollLeft 22s linear infinite;
+  animation: scrollLeft 25s linear infinite;
 }
 
 .track-right {
-  animation: scrollRight 22s linear infinite;
+  animation: scrollRight 25s linear infinite;
 }
 
-/* Cards de Empresas (Triplicados em tamanho) */
+/* Cards de Empresas */
 .partner-card {
-  width: 22vw; /* Agora cada card ocupa mais de 1/5 da largura do totem */
+  width: 22vw;
   height: 22vw;
   background-color: white;
   border-radius: 3vw;
@@ -178,13 +178,13 @@ html, body {
   object-fit: contain;
 }
 
-/* Keyframes de Animação Contínua */
+/* KEYFRAMES SEM SALTO (Calculados para deslocamento exato de 1/4 da lista) */
 @keyframes scrollLeft {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-25%); } 
 }
 
 @keyframes scrollRight {
-  0% { transform: translateX(-50%); }
+  0% { transform: translateX(-25%); }
   100% { transform: translateX(0); }
 }
