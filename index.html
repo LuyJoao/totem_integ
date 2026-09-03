@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Totem - INTEG</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -13,12 +13,12 @@
     Toque em qualquer lugar para iniciar o Totem
   </div>
 
-  <!-- Botão Invisível no canto superior direito para alternar Fullscreen -->
+  <!-- Botão Invisível no canto superior direito para alternar Fullscreen (Testes) -->
   <button id="exit-fullscreen-btn" title="Atalho de Tela Cheia"></button>
 
   <div class="container">
     
-    <!-- Logo Principal -->
+    <!-- Logo Principal Superior -->
     <div class="logo-area">
       <div class="logo-circle">
         <img src="logo-integ.png" alt="INTEG Logo">
@@ -31,22 +31,27 @@
       <p>UNICENTRO</p>
     </div>
 
-    <!-- Botão de Ação -->
+    <!-- Botão Principal de Ação -->
     <button class="btn-quiz" id="startBtn">Iniciar o Quiz</button>
 
-    <!-- Carrosséis de Parceiros -->
+    <!-- Seção de Carrosséis de Parceiros -->
     <div class="partners-section">
       <div class="partners-title">EMPRESAS PARCEIRAS</div>
       
       <!-- Carrossel 1: Direita para Esquerda -->
       <div class="carousel-container">
         <div class="carousel-track track-left">
-          <!-- Bloco Original -->
+          <!-- Duplicamos a sequência 3x para garantir preenchimento total em telas muito largas -->
           <div class="partner-card"><img src="logo1.png" alt="Logo 1"></div>
           <div class="partner-card"><img src="logo2.png" alt="Logo 2"></div>
           <div class="partner-card"><img src="logo3.png" alt="Logo 3"></div>
           <div class="partner-card"><img src="logo4.png" alt="Logo 4"></div>
-          <!-- Bloco Duplicado para Loop Infinito -->
+
+          <div class="partner-card"><img src="logo1.png" alt="Logo 1"></div>
+          <div class="partner-card"><img src="logo2.png" alt="Logo 2"></div>
+          <div class="partner-card"><img src="logo3.png" alt="Logo 3"></div>
+          <div class="partner-card"><img src="logo4.png" alt="Logo 4"></div>
+
           <div class="partner-card"><img src="logo1.png" alt="Logo 1"></div>
           <div class="partner-card"><img src="logo2.png" alt="Logo 2"></div>
           <div class="partner-card"><img src="logo3.png" alt="Logo 3"></div>
@@ -57,12 +62,17 @@
       <!-- Carrossel 2: Esquerda para Direita -->
       <div class="carousel-container">
         <div class="carousel-track track-right">
-          <!-- Bloco Original -->
+          <!-- Duplicamos a sequência 3x para garantir preenchimento total em telas muito largas -->
           <div class="partner-card"><img src="logo5.png" alt="Logo 5"></div>
           <div class="partner-card"><img src="logo6.png" alt="Logo 6"></div>
           <div class="partner-card"><img src="logo7.png" alt="Logo 7"></div>
           <div class="partner-card"><img src="logo8.png" alt="Logo 8"></div>
-          <!-- Bloco Duplicado para Loop Infinito -->
+
+          <div class="partner-card"><img src="logo5.png" alt="Logo 5"></div>
+          <div class="partner-card"><img src="logo6.png" alt="Logo 6"></div>
+          <div class="partner-card"><img src="logo7.png" alt="Logo 7"></div>
+          <div class="partner-card"><img src="logo8.png" alt="Logo 8"></div>
+
           <div class="partner-card"><img src="logo5.png" alt="Logo 5"></div>
           <div class="partner-card"><img src="logo6.png" alt="Logo 6"></div>
           <div class="partner-card"><img src="logo7.png" alt="Logo 7"></div>
@@ -74,46 +84,6 @@
 
   </div>
 
-  <script>
-    const overlay = document.getElementById('start-overlay');
-    const exitBtn = document.getElementById('exit-fullscreen-btn');
-
-    function requestFullscreen() {
-      const elem = document.documentElement;
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
-      }
-    }
-
-    function exitFullscreen() {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      }
-    }
-
-    // Primeiro toque entra em Fullscreen e remove a camada inicial
-    overlay.addEventListener('click', () => {
-      requestFullscreen();
-      overlay.style.display = 'none';
-    });
-
-    // Clique no canto superior direito alterna o Fullscreen para testes
-    exitBtn.addEventListener('click', () => {
-      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        requestFullscreen();
-      } else {
-        exitFullscreen();
-      }
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>

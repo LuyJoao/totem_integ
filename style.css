@@ -2,7 +2,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  user-select: none; /* Impede a seleção acidental de textos no totem */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 html, body {
@@ -30,20 +32,22 @@ html, body {
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 3vh, 2rem);
   font-weight: bold;
   cursor: pointer;
   text-align: center;
   padding: 20px;
 }
 
-/* --- BOTÃO INVISÍVEL NO CANTO SUPERIOR DIREITO (TESTES) --- */
+/* --- BOTÃO INVISÍVEL NO CANTO SUPERIOR DIREITO --- */
 #exit-fullscreen-btn {
   position: fixed;
   top: 0;
   right: 0;
-  width: 90px;
-  height: 90px;
+  width: 10vw;
+  height: 10vw;
+  max-width: 100px;
+  max-height: 100px;
   background: transparent;
   border: none;
   outline: none;
@@ -51,22 +55,22 @@ html, body {
   cursor: pointer;
 }
 
-/* --- ESTRUTURA CENTRALIZADA --- */
+/* --- ESTRUTURA RESPONSIVA CENTRALIZADA --- */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  gap: 35px;
+  justify-content: space-between; /* Distribui proporcionalmente ao longo da altura */
+  width: 100vw;
+  height: 100vh;
+  padding: 4vh 0; /* Margem interna baseada na altura da tela */
   text-align: center;
 }
 
-/* Logo do Topo */
+/* Logo Superior (Ajusta proporcionalmente à altura da tela) */
 .logo-area .logo-circle {
-  width: 150px;
-  height: 150px;
+  width: min(20vh, 160px);
+  height: min(20vh, 160px);
   background-color: white;
   border-radius: 50%;
   margin: 0 auto;
@@ -82,27 +86,27 @@ html, body {
   object-fit: contain;
 }
 
-/* Títulos */
+/* Títulos com Escala Dinâmica */
 .title-area h1 {
-  font-size: 2.2rem;
+  font-size: clamp(1.5rem, 4vh, 2.5rem);
   line-height: 1.2;
-  margin-bottom: 8px;
+  margin-bottom: 1vh;
 }
 
 .title-area p {
   color: #ffcc00;
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 2vh, 1.2rem);
   font-weight: bold;
   letter-spacing: 1px;
 }
 
-/* Botão Central */
+/* Botão Central Responsivo */
 .btn-quiz {
   background-color: #ffcc00;
   color: #000;
-  font-size: 1.6rem;
+  font-size: clamp(1.2rem, 3vh, 1.8rem);
   font-weight: bold;
-  padding: 20px 50px;
+  padding: 2vh 8vw;
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -115,7 +119,7 @@ html, body {
   background-color: #e6b800;
 }
 
-/* --- SEÇÃO DOS CARROSSEIS (LARGURA TOTAL) --- */
+/* --- CARROSSEIS NA EXTENSÃO TOTAL (100VW) --- */
 .partners-section {
   width: 100vw;
   display: flex;
@@ -125,19 +129,19 @@ html, body {
 }
 
 .partners-title {
-  font-size: 0.95rem;
+  font-size: clamp(0.75rem, 1.8vh, 1rem);
   letter-spacing: 2px;
-  margin-bottom: 15px;
+  margin-bottom: 1.5vh;
   color: #ffcc00;
   font-weight: bold;
 }
 
 .carousel-container {
-  width: 100vw;            /* Garante extensão horizontal total */
+  width: 100vw; /* Garante que o carrossel ocupe toda a extensão horizontal */
   overflow: hidden;
-  margin-bottom: 12px;
+  margin-bottom: 1.2vh;
   display: flex;
-  justify-content: flex-start; /* Permite o fluxo contínuo de borda a borda */
+  justify-content: flex-start;
 }
 
 .carousel-track {
@@ -148,20 +152,20 @@ html, body {
 
 /* Animações dos Carrosséis */
 .track-left {
-  animation: scrollLeft 14s linear infinite;
+  animation: scrollLeft 16s linear infinite;
 }
 
 .track-right {
-  animation: scrollRight 14s linear infinite;
+  animation: scrollRight 16s linear infinite;
 }
 
-/* Cards das Logos */
+/* Cards das Logos Responsivos */
 .partner-card {
-  width: 85px;
-  height: 85px;
+  width: min(12vh, 90px);
+  height: min(12vh, 90px);
   background-color: white;
   border-radius: 16px;
-  margin: 0 10px;
+  margin: 0 1.2vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,7 +179,7 @@ html, body {
   object-fit: contain;
 }
 
-/* Keyframes de Animação Contínua */
+/* Keyframes de Animação Contínua em Loop */
 @keyframes scrollLeft {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
