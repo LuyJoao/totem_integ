@@ -32,11 +32,11 @@ html, body {
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: clamp(1.2rem, 3vh, 2rem);
+  font-size: clamp(2rem, 3.5vh, 4rem); /* Escala ampliada para 4K */
   font-weight: bold;
   cursor: pointer;
   text-align: center;
-  padding: 20px;
+  padding: 40px;
 }
 
 /* --- BOTÃO INVISÍVEL NO CANTO SUPERIOR DIREITO --- */
@@ -44,10 +44,10 @@ html, body {
   position: fixed;
   top: 0;
   right: 0;
-  width: 10vw;
-  height: 10vw;
-  max-width: 100px;
-  max-height: 100px;
+  width: 8vw;
+  height: 8vw;
+  max-width: 200px;
+  max-height: 200px;
   background: transparent;
   border: none;
   outline: none;
@@ -55,29 +55,29 @@ html, body {
   cursor: pointer;
 }
 
-/* --- ESTRUTURA RESPONSIVA CENTRALIZADA --- */
+/* --- ESTRUTURA RESPONSIVA 4K --- */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* Distribui proporcionalmente ao longo da altura */
+  justify-content: space-between;
   width: 100vw;
   height: 100vh;
-  padding: 4vh 0; /* Margem interna baseada na altura da tela */
+  padding: 5vh 0;
   text-align: center;
 }
 
-/* Logo Superior (Ajusta proporcionalmente à altura da tela) */
+/* Logo Superior Dimensionada para 4K */
 .logo-area .logo-circle {
-  width: min(20vh, 160px);
-  height: min(20vh, 160px);
+  width: min(22vh, 320px);
+  height: min(22vh, 320px);
   background-color: white;
   border-radius: 50%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
 }
 
 .logo-area img {
@@ -86,31 +86,32 @@ html, body {
   object-fit: contain;
 }
 
-/* Títulos com Escala Dinâmica */
+/* Títulos com Tipografia Dimensionada para 4K */
 .title-area h1 {
-  font-size: clamp(1.5rem, 4vh, 2.5rem);
-  line-height: 1.2;
-  margin-bottom: 1vh;
+  font-size: clamp(2.5rem, 4.5vh, 5rem);
+  line-height: 1.25;
+  margin-bottom: 1.5vh;
+  font-weight: 800;
 }
 
 .title-area p {
   color: #ffcc00;
-  font-size: clamp(0.8rem, 2vh, 1.2rem);
+  font-size: clamp(1.2rem, 2.2vh, 2.5rem);
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
-/* Botão Central Responsivo */
+/* Botão Principal Expandido */
 .btn-quiz {
   background-color: #ffcc00;
   color: #000;
-  font-size: clamp(1.2rem, 3vh, 1.8rem);
+  font-size: clamp(2rem, 3.5vh, 3.8rem);
   font-weight: bold;
-  padding: 2vh 8vw;
+  padding: 2.5vh 10vw;
   border: none;
-  border-radius: 50px;
+  border-radius: 100px;
   cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
   transition: transform 0.2s, background-color 0.2s;
 }
 
@@ -119,7 +120,7 @@ html, body {
   background-color: #e6b800;
 }
 
-/* --- CARROSSEIS NA EXTENSÃO TOTAL (100VW) --- */
+/* --- CARROSSEIS NA EXTENSÃO TOTAL 4K (100VW) --- */
 .partners-section {
   width: 100vw;
   display: flex;
@@ -129,17 +130,17 @@ html, body {
 }
 
 .partners-title {
-  font-size: clamp(0.75rem, 1.8vh, 1rem);
-  letter-spacing: 2px;
-  margin-bottom: 1.5vh;
+  font-size: clamp(1.1rem, 2vh, 2rem);
+  letter-spacing: 4px;
+  margin-bottom: 2vh;
   color: #ffcc00;
   font-weight: bold;
 }
 
 .carousel-container {
-  width: 100vw; /* Garante que o carrossel ocupe toda a extensão horizontal */
+  width: 100vw;
   overflow: hidden;
-  margin-bottom: 1.2vh;
+  margin-bottom: 2vh;
   display: flex;
   justify-content: flex-start;
 }
@@ -152,25 +153,25 @@ html, body {
 
 /* Animações dos Carrosséis */
 .track-left {
-  animation: scrollLeft 16s linear infinite;
+  animation: scrollLeft 18s linear infinite;
 }
 
 .track-right {
-  animation: scrollRight 16s linear infinite;
+  animation: scrollRight 18s linear infinite;
 }
 
-/* Cards das Logos Responsivos */
+/* Cards das Logos para 4K */
 .partner-card {
-  width: min(12vh, 90px);
-  height: min(12vh, 90px);
+  width: min(14vh, 180px);
+  height: min(14vh, 180px);
   background-color: white;
-  border-radius: 16px;
-  margin: 0 1.2vw;
+  border-radius: 24px;
+  margin: 0 1.5vw;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .partner-card img {
@@ -179,7 +180,7 @@ html, body {
   object-fit: contain;
 }
 
-/* Keyframes de Animação Contínua em Loop */
+/* Keyframes de Animação Contínua */
 @keyframes scrollLeft {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }

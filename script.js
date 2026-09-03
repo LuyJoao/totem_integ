@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Primeiro toque entra em Fullscreen e esconde o overlay inicial
   if (overlay) {
     overlay.addEventListener('click', () => {
       requestFullscreen();
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Botão secreto invisível no canto superior direito para alternar Fullscreen
   if (exitBtn) {
     exitBtn.addEventListener('click', () => {
       if (!document.fullscreenElement && !document.webkitFullscreenElement) {
@@ -42,23 +44,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- TRAVAS DE SEGURANÇA PARA TOTEM ---
+
+  // 1. Desativa o menu de contexto (clique direito / toque longo)
   document.addEventListener('contextmenu', (event) => {
     event.preventDefault();
   });
 
+  // 2. Bloqueia atalhos de teclado de inspeção e navegação
   document.addEventListener('keydown', (event) => {
+    // Tecla F12 (DevTools)
     if (event.key === 'F12') {
       event.preventDefault();
     }
 
+    // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (Ferramentas de Desenvolvedor)
     if (event.ctrlKey && event.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(event.key)) {
       event.preventDefault();
     }
 
+    // Ctrl+U (Exibir Código Fonte) e Ctrl+P (Imprimir)
     if (event.ctrlKey && ['u', 'U', 'p', 'P'].includes(event.key)) {
       event.preventDefault();
     }
 
+    // Tecla ESC (Evita sair de tela cheia se um teclado estiver conectado)
     if (event.key === 'Escape') {
       event.preventDefault();
     }
