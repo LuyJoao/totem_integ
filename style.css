@@ -32,11 +32,11 @@ html, body {
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: clamp(2rem, 3.5vh, 4rem); /* Escala ampliada para 4K */
+  font-size: 5vw; /* Texto de boas-vindas bem grande */
   font-weight: bold;
   cursor: pointer;
   text-align: center;
-  padding: 40px;
+  padding: 5vw;
 }
 
 /* --- BOTÃO INVISÍVEL NO CANTO SUPERIOR DIREITO --- */
@@ -44,10 +44,8 @@ html, body {
   position: fixed;
   top: 0;
   right: 0;
-  width: 8vw;
-  height: 8vw;
-  max-width: 200px;
-  max-height: 200px;
+  width: 15vw;
+  height: 15vw;
   background: transparent;
   border: none;
   outline: none;
@@ -55,29 +53,29 @@ html, body {
   cursor: pointer;
 }
 
-/* --- ESTRUTURA RESPONSIVA 4K --- */
+/* --- ESTRUTURA PARA TOTEM VERTICAL (4K) --- */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around; /* Preenche de cima a baixo */
   width: 100vw;
   height: 100vh;
-  padding: 5vh 0;
+  padding: 6vh 0;
   text-align: center;
 }
 
-/* Logo Superior Dimensionada para 4K */
+/* Logo Superior (Aumentada para 40% da largura do totem) */
 .logo-area .logo-circle {
-  width: min(22vh, 320px);
-  height: min(22vh, 320px);
+  width: 40vw;
+  height: 40vw;
   background-color: white;
   border-radius: 50%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 1vw 3vw rgba(0,0,0,0.3);
 }
 
 .logo-area img {
@@ -86,32 +84,32 @@ html, body {
   object-fit: contain;
 }
 
-/* Títulos com Tipografia Dimensionada para 4K */
+/* Títulos Gigantes */
 .title-area h1 {
-  font-size: clamp(2.5rem, 4.5vh, 5rem);
-  line-height: 1.25;
+  font-size: 5.5vw; /* Muito maior e legível à distância */
+  line-height: 1.2;
   margin-bottom: 1.5vh;
   font-weight: 800;
 }
 
 .title-area p {
   color: #ffcc00;
-  font-size: clamp(1.2rem, 2.2vh, 2.5rem);
+  font-size: 3vw;
   font-weight: bold;
   letter-spacing: 2px;
 }
 
-/* Botão Principal Expandido */
+/* Botão Principal Destaque */
 .btn-quiz {
   background-color: #ffcc00;
   color: #000;
-  font-size: clamp(2rem, 3.5vh, 3.8rem);
+  font-size: 4.5vw;
   font-weight: bold;
-  padding: 2.5vh 10vw;
+  padding: 3vh 12vw;
   border: none;
   border-radius: 100px;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  box-shadow: 0 1vw 2vw rgba(0,0,0,0.4);
   transition: transform 0.2s, background-color 0.2s;
 }
 
@@ -120,7 +118,7 @@ html, body {
   background-color: #e6b800;
 }
 
-/* --- CARROSSEIS NA EXTENSÃO TOTAL 4K (100VW) --- */
+/* --- CARROSSEIS GIGANTES DE BORDA A BORDA --- */
 .partners-section {
   width: 100vw;
   display: flex;
@@ -130,7 +128,7 @@ html, body {
 }
 
 .partners-title {
-  font-size: clamp(1.1rem, 2vh, 2rem);
+  font-size: 2.8vw;
   letter-spacing: 4px;
   margin-bottom: 2vh;
   color: #ffcc00;
@@ -140,7 +138,7 @@ html, body {
 .carousel-container {
   width: 100vw;
   overflow: hidden;
-  margin-bottom: 2vh;
+  margin-bottom: 2.5vh;
   display: flex;
   justify-content: flex-start;
 }
@@ -151,27 +149,27 @@ html, body {
   will-change: transform;
 }
 
-/* Animações dos Carrosséis */
+/* Animações com tempo ajustado para deslizar suavemente */
 .track-left {
-  animation: scrollLeft 18s linear infinite;
+  animation: scrollLeft 22s linear infinite;
 }
 
 .track-right {
-  animation: scrollRight 18s linear infinite;
+  animation: scrollRight 22s linear infinite;
 }
 
-/* Cards das Logos para 4K */
+/* Cards de Empresas (Triplicados em tamanho) */
 .partner-card {
-  width: min(14vh, 180px);
-  height: min(14vh, 180px);
+  width: 22vw; /* Agora cada card ocupa mais de 1/5 da largura do totem */
+  height: 22vw;
   background-color: white;
-  border-radius: 24px;
-  margin: 0 1.5vw;
+  border-radius: 3vw;
+  margin: 0 2vw;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 0.8vw 1.5vw rgba(0,0,0,0.25);
 }
 
 .partner-card img {
