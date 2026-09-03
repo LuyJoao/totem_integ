@@ -4,219 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Totem - INTEG</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      user-select: none;
-    }
-
-    html, body {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      background-color: #0b318f;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* OVERLAY INICIAL PARA FORÇAR TELA CHEIA */
-    #start-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(11, 49, 143, 0.95);
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 1.8rem;
-      font-weight: bold;
-      cursor: pointer;
-      text-align: center;
-      padding: 20px;
-    }
-
-    /* BOTÃO INVISÍVEL PARA SAIR DO FULLSCREEN */
-    #exit-fullscreen-btn {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 80px;
-      height: 80px;
-      background: transparent; /* Invisível */
-      border: none;
-      outline: none;
-      z-index: 9998;
-      cursor: pointer;
-    }
-
-    /* CONTAINER PRINCIPAL */
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      gap: 35px;
-      text-align: center;
-    }
-
-    .logo-area .logo-circle {
-      width: 150px;
-      height: 150px;
-      background-color: white;
-      border-radius: 50%;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
-
-    .title-area h1 {
-      font-size: 2.2rem;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-
-    .title-area p {
-      color: #ffcc00;
-      font-size: 1rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    .btn-quiz {
-      background-color: #ffcc00;
-      color: #000;
-      font-size: 1.6rem;
-      font-weight: bold;
-      padding: 20px 50px;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
-    }
-
-    .btn-quiz:active {
-      transform: scale(0.95);
-    }
-
-    /* CARROSSEIS */
-    .partners-section {
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .partners-title {
-      font-size: 0.95rem;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-      color: #ffcc00;
-      font-weight: bold;
-    }
-
-    .carousel-container {
-      width: 100vw;
-      overflow: hidden;
-      margin-bottom: 12px;
-    }
-
-    .carousel-track {
-      display: flex;
-      width: max-content;
-    }
-
-    .track-left { animation: scrollLeft 14s linear infinite; }
-    .track-right { animation: scrollRight 14s linear infinite; }
-
-    .partner-card {
-      width: 85px;
-      height: 85px;
-      background-color: white;
-      border-radius: 16px;
-      margin: 0 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-shrink: 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    }
-
-    @keyframes scrollLeft {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    @keyframes scrollRight {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(0); }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Tela inicial obrigatória para ativar Fullscreen pelo toque -->
+  <!-- Overlay para ativar Fullscreen no primeiro toque -->
   <div id="start-overlay">
     Toque em qualquer lugar para iniciar o Totem
   </div>
 
-  <!-- Botão Secreto no Canto Superior Direito -->
-  <button id="exit-fullscreen-btn" title="Atalho Secreto de Tela Cheia"></button>
+  <!-- Botão Invisível no canto superior direito para alternar Fullscreen -->
+  <button id="exit-fullscreen-btn" title="Atalho de Tela Cheia"></button>
 
   <div class="container">
     
+    <!-- Logo Principal -->
     <div class="logo-area">
       <div class="logo-circle">
-        <img src="logo-integ.png" alt="INTEG Logo" style="width: 80%;">
+        <img src="logo-integ.png" alt="INTEG Logo">
       </div>
     </div>
 
+    <!-- Título do Projeto -->
     <div class="title-area">
       <h1>Incubadora Tecnológica<br>de Guarapuava</h1>
       <p>UNICENTRO</p>
     </div>
 
+    <!-- Botão de Ação -->
     <button class="btn-quiz" id="startBtn">Iniciar o Quiz</button>
 
+    <!-- Carrosséis de Parceiros -->
     <div class="partners-section">
       <div class="partners-title">EMPRESAS PARCEIRAS</div>
       
+      <!-- Carrossel 1: Direita para Esquerda -->
       <div class="carousel-container">
         <div class="carousel-track track-left">
-          <div class="partner-card"><img src="logo1.png" alt="1" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo2.png" alt="2" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo3.png" alt="3" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo4.png" alt="4" style="width: 80%;"></div>
-          <!-- Duplicados -->
-          <div class="partner-card"><img src="logo1.png" alt="1" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo2.png" alt="2" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo3.png" alt="3" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo4.png" alt="4" style="width: 80%;"></div>
+          <!-- Bloco Original -->
+          <div class="partner-card"><img src="logo1.png" alt="Logo 1"></div>
+          <div class="partner-card"><img src="logo2.png" alt="Logo 2"></div>
+          <div class="partner-card"><img src="logo3.png" alt="Logo 3"></div>
+          <div class="partner-card"><img src="logo4.png" alt="Logo 4"></div>
+          <!-- Bloco Duplicado para Loop Infinito -->
+          <div class="partner-card"><img src="logo1.png" alt="Logo 1"></div>
+          <div class="partner-card"><img src="logo2.png" alt="Logo 2"></div>
+          <div class="partner-card"><img src="logo3.png" alt="Logo 3"></div>
+          <div class="partner-card"><img src="logo4.png" alt="Logo 4"></div>
         </div>
       </div>
 
+      <!-- Carrossel 2: Esquerda para Direita -->
       <div class="carousel-container">
         <div class="carousel-track track-right">
-          <div class="partner-card"><img src="logo5.png" alt="5" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo6.png" alt="6" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo7.png" alt="7" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo8.png" alt="8" style="width: 80%;"></div>
-          <!-- Duplicados -->
-          <div class="partner-card"><img src="logo5.png" alt="5" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo6.png" alt="6" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo7.png" alt="7" style="width: 80%;"></div>
-          <div class="partner-card"><img src="logo8.png" alt="8" style="width: 80%;"></div>
+          <!-- Bloco Original -->
+          <div class="partner-card"><img src="logo5.png" alt="Logo 5"></div>
+          <div class="partner-card"><img src="logo6.png" alt="Logo 6"></div>
+          <div class="partner-card"><img src="logo7.png" alt="Logo 7"></div>
+          <div class="partner-card"><img src="logo8.png" alt="Logo 8"></div>
+          <!-- Bloco Duplicado para Loop Infinito -->
+          <div class="partner-card"><img src="logo5.png" alt="Logo 5"></div>
+          <div class="partner-card"><img src="logo6.png" alt="Logo 6"></div>
+          <div class="partner-card"><img src="logo7.png" alt="Logo 7"></div>
+          <div class="partner-card"><img src="logo8.png" alt="Logo 8"></div>
         </div>
       </div>
 
@@ -228,7 +78,6 @@
     const overlay = document.getElementById('start-overlay');
     const exitBtn = document.getElementById('exit-fullscreen-btn');
 
-    // Função para entrar em Tela Cheia
     function requestFullscreen() {
       const elem = document.documentElement;
       if (elem.requestFullscreen) {
@@ -240,7 +89,6 @@
       }
     }
 
-    // Função para sair da Tela Cheia
     function exitFullscreen() {
       if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -251,13 +99,13 @@
       }
     }
 
-    // Ao dar o primeiro toque no Totem, entra em tela cheia e esconde o overlay
+    // Primeiro toque entra em Fullscreen e remove a camada inicial
     overlay.addEventListener('click', () => {
       requestFullscreen();
       overlay.style.display = 'none';
     });
 
-    // Clique no canto superior direito alterna a tela cheia
+    // Clique no canto superior direito alterna o Fullscreen para testes
     exitBtn.addEventListener('click', () => {
       if (!document.fullscreenElement && !document.webkitFullscreenElement) {
         requestFullscreen();
