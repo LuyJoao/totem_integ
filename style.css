@@ -1,157 +1,190 @@
 * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      user-select: none;
-    }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
 
-    html, body {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-      background-color: #0b318f;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #0b318f;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    /* OVERLAY INICIAL PARA FORÇAR TELA CHEIA */
-    #start-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(11, 49, 143, 0.95);
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-size: 1.8rem;
-      font-weight: bold;
-      cursor: pointer;
-      text-align: center;
-      padding: 20px;
-    }
+/* --- OVERLAY INICIAL DE TOQUE --- */
+#start-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(11, 49, 143, 0.98);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 5vw; /* Texto de boas-vindas bem grande */
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  padding: 5vw;
+}
 
-    /* BOTÃO INVISÍVEL PARA SAIR DO FULLSCREEN */
-    #exit-fullscreen-btn {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 80px;
-      height: 80px;
-      background: transparent; /* Invisível */
-      border: none;
-      outline: none;
-      z-index: 9998;
-      cursor: pointer;
-    }
+/* --- BOTÃO INVISÍVEL NO CANTO SUPERIOR DIREITO --- */
+#exit-fullscreen-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 15vw;
+  height: 15vw;
+  background: transparent;
+  border: none;
+  outline: none;
+  z-index: 9998;
+  cursor: pointer;
+}
 
-    /* CONTAINER PRINCIPAL */
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      gap: 35px;
-      text-align: center;
-    }
+/* --- ESTRUTURA PARA TOTEM VERTICAL (4K) --- */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; /* Preenche de cima a baixo */
+  width: 100vw;
+  height: 100vh;
+  padding: 6vh 0;
+  text-align: center;
+}
 
-    .logo-area .logo-circle {
-      width: 150px;
-      height: 150px;
-      background-color: white;
-      border-radius: 50%;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
+/* Logo Superior (Aumentada para 40% da largura do totem) */
+.logo-area .logo-circle {
+  width: 40vw;
+  height: 40vw;
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1vw 3vw rgba(0,0,0,0.3);
+}
 
-    .title-area h1 {
-      font-size: 2.2rem;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
+.logo-area img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
 
-    .title-area p {
-      color: #ffcc00;
-      font-size: 1rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
+/* Títulos Gigantes */
+.title-area h1 {
+  font-size: 5.5vw; /* Muito maior e legível à distância */
+  line-height: 1.2;
+  margin-bottom: 1.5vh;
+  font-weight: 800;
+}
 
-    .btn-quiz {
-      background-color: #ffcc00;
-      color: #000;
-      font-size: 1.6rem;
-      font-weight: bold;
-      padding: 20px 50px;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
-    }
+.title-area p {
+  color: #ffcc00;
+  font-size: 3vw;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
 
-    .btn-quiz:active {
-      transform: scale(0.95);
-    }
+/* Botão Principal Destaque */
+.btn-quiz {
+  background-color: #ffcc00;
+  color: #000;
+  font-size: 4.5vw;
+  font-weight: bold;
+  padding: 3vh 12vw;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 1vw 2vw rgba(0,0,0,0.4);
+  transition: transform 0.2s, background-color 0.2s;
+}
 
-    /* CARROSSEIS */
-    .partners-section {
-      width: 100%;
-      overflow: hidden;
-    }
+.btn-quiz:active {
+  transform: scale(0.95);
+  background-color: #e6b800;
+}
 
-    .partners-title {
-      font-size: 0.95rem;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-      color: #ffcc00;
-      font-weight: bold;
-    }
+/* --- CARROSSEIS GIGANTES DE BORDA A BORDA --- */
+.partners-section {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
 
-    .carousel-container {
-      width: 100vw;
-      overflow: hidden;
-      margin-bottom: 12px;
-    }
+.partners-title {
+  font-size: 2.8vw;
+  letter-spacing: 4px;
+  margin-bottom: 2vh;
+  color: #ffcc00;
+  font-weight: bold;
+}
 
-    .carousel-track {
-      display: flex;
-      width: max-content;
-    }
+.carousel-container {
+  width: 100vw;
+  overflow: hidden;
+  margin-bottom: 2.5vh;
+  display: flex;
+  justify-content: flex-start;
+}
 
-    .track-left { animation: scrollLeft 14s linear infinite; }
-    .track-right { animation: scrollRight 14s linear infinite; }
+.carousel-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
 
-    .partner-card {
-      width: 85px;
-      height: 85px;
-      background-color: white;
-      border-radius: 16px;
-      margin: 0 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-shrink: 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    }
+/* Animações com tempo ajustado para deslizar suavemente */
+.track-left {
+  animation: scrollLeft 22s linear infinite;
+}
 
-    @keyframes scrollLeft {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+.track-right {
+  animation: scrollRight 22s linear infinite;
+}
 
-    @keyframes scrollRight {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(0); }
-    }
+/* Cards de Empresas (Triplicados em tamanho) */
+.partner-card {
+  width: 22vw; /* Agora cada card ocupa mais de 1/5 da largura do totem */
+  height: 22vw;
+  background-color: white;
+  border-radius: 3vw;
+  margin: 0 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 0.8vw 1.5vw rgba(0,0,0,0.25);
+}
+
+.partner-card img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+/* Keyframes de Animação Contínua */
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
