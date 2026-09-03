@@ -115,7 +115,7 @@ html, body {
   background-color: #e6b800;
 }
 
-/* --- SEÇÃO DOS CARROSSEIS --- */
+/* --- SEÇÃO DOS CARROSSEIS (LARGURA TOTAL) --- */
 .partners-section {
   width: 100vw;
   display: flex;
@@ -133,11 +133,11 @@ html, body {
 }
 
 .carousel-container {
-  width: 100vw;
+  width: 100vw;            /* Garante extensão horizontal total */
   overflow: hidden;
   margin-bottom: 12px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* Permite o fluxo contínuo de borda a borda */
 }
 
 .carousel-track {
