@@ -53,7 +53,7 @@ html, body {
   cursor: pointer;
 }
 
-/* --- ESTRUTURA PARA TOTEM VERTICAL (4K) --- */
+/* --- ESTRUTURA PARA TOTEM VERTICAL 4K --- */
 .container {
   display: flex;
   flex-direction: column;
@@ -61,14 +61,14 @@ html, body {
   justify-content: space-around;
   width: 100vw;
   height: 100vh;
-  padding: 6vh 0;
+  padding: 4vh 0;
   text-align: center;
 }
 
-/* Logo Superior */
+/* Logo Superior Redonda */
 .logo-area .logo-circle {
-  width: 40vw;
-  height: 40vw;
+  width: 38vw;
+  height: 38vw;
   background-color: white;
   border-radius: 50%;
   margin: 0 auto;
@@ -84,11 +84,11 @@ html, body {
   object-fit: contain;
 }
 
-/* Títulos */
+/* Títulos da Página */
 .title-area h1 {
   font-size: 5.5vw;
   line-height: 1.2;
-  margin-bottom: 1.5vh;
+  margin-bottom: 1vh;
   font-weight: 800;
 }
 
@@ -99,13 +99,13 @@ html, body {
   letter-spacing: 2px;
 }
 
-/* Botão Principal */
+/* Botão do Quiz */
 .btn-quiz {
   background-color: #ffcc00;
   color: #000;
   font-size: 4.5vw;
   font-weight: bold;
-  padding: 3vh 12vw;
+  padding: 2.5vh 12vw;
   border: none;
   border-radius: 100px;
   cursor: pointer;
@@ -118,7 +118,7 @@ html, body {
   background-color: #e6b800;
 }
 
-/* --- CARROSSEIS CONTINUOS --- */
+/* --- SEÇÃO DOS CARROSSEIS --- */
 .partners-section {
   width: 100vw;
   display: flex;
@@ -127,10 +127,11 @@ html, body {
   overflow: hidden;
 }
 
+/* Títulos Individuais dos Carrosséis */
 .partners-title {
-  font-size: 2.8vw;
-  letter-spacing: 4px;
-  margin-bottom: 2vh;
+  font-size: 2.6vw;
+  letter-spacing: 3px;
+  margin-bottom: 1.2vh;
   color: #ffcc00;
   font-weight: bold;
 }
@@ -138,7 +139,7 @@ html, body {
 .carousel-container {
   width: 100vw;
   overflow: hidden;
-  margin-bottom: 2.5vh;
+  margin-bottom: 2vh;
   display: flex;
   justify-content: flex-start;
 }
@@ -149,22 +150,22 @@ html, body {
   will-change: transform;
 }
 
-/* Animações com tempo ajustado para velocidade agradável */
+/* Animações Flutuantes e Suaves */
 .track-left {
-  animation: scrollLeft 25s linear infinite;
+  animation: scrollLeft 35s linear infinite;
 }
 
 .track-right {
-  animation: scrollRight 25s linear infinite;
+  animation: scrollRight 35s linear infinite;
 }
 
-/* Cards de Empresas */
+/* Cards de Logotipos */
 .partner-card {
   width: 22vw;
   height: 22vw;
   background-color: white;
   border-radius: 3vw;
-  margin: 0 2vw;
+  margin: 0 1.8vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -178,13 +179,13 @@ html, body {
   object-fit: contain;
 }
 
-/* KEYFRAMES SEM SALTO (Calculados para deslocamento exato de 1/4 da lista) */
+/* KEYFRAMES DO LOOP INFINITO CONTINUO (-50%) */
 @keyframes scrollLeft {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-25%); } 
+  100% { transform: translateX(-50%); }
 }
 
 @keyframes scrollRight {
-  0% { transform: translateX(-25%); }
+  0% { transform: translateX(-50%); }
   100% { transform: translateX(0); }
 }
