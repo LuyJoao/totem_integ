@@ -43,6 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Redireciona para a página do quiz quando o botão Iniciar for clicado
+  const startBtn = document.getElementById('startBtn');
+  if (startBtn) {
+    startBtn.addEventListener('click', () => {
+      window.location.href = 'html/quizPage.html';
+    });
+  }
+  
   // --- TRAVAS DE SEGURANÇA PARA TOTEM ---
 
   // 1. Desativa o menu de contexto (clique direito / toque longo)
@@ -52,16 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Bloqueia atalhos de teclado de inspeção e navegação
   document.addEventListener('keydown', (event) => {
-    // Tecla F12 (DevTools)
-    if (event.key === 'F12') {
-      event.preventDefault();
-    }
-
-    // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (Ferramentas de Desenvolvedor)
-    if (event.ctrlKey && event.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(event.key)) {
-      event.preventDefault();
-    }
-
+    
     // Ctrl+U (Exibir Código Fonte) e Ctrl+P (Imprimir)
     if (event.ctrlKey && ['u', 'U', 'p', 'P'].includes(event.key)) {
       event.preventDefault();
@@ -73,11 +72,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Redireciona para a página do quiz quando o botão Iniciar for clicado
-  const startBtn = document.getElementById('startBtn');
-  if (startBtn) {
-    startBtn.addEventListener('click', () => {
-      window.location.href = 'html/quizPage.html';
-    });
-  }
 });
