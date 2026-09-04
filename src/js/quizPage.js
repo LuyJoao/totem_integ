@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       btnYes.addEventListener('click', () => {
         // pequeno delay para o usuário ver o clique
-        setTimeout(() => window.location.href = 'index.html', 150);
+        setTimeout(() => window.location.href = '../index.html', 150);
       });
     });
   }

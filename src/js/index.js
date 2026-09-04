@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const startBtn = document.getElementById('startBtn');
   if (startBtn) {
     startBtn.addEventListener('click', () => {
-      window.location.href = 'quizPage.html';
+      window.location.href = 'html/quizPage.html';
     });
   }
 });
