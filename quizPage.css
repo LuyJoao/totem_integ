@@ -61,6 +61,71 @@ html, body {
 
     color: #122555;
 }
+
+/* Toast exibido ao sair do quiz */
+.exit-toast {
+    position: fixed;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%) translateY(-10%);
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
+}
+.exit-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Modal de confirmação */
+.confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+.confirm-modal {
+    background: #FFFFFF;
+    color: #122555;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    text-align: center;
+}
+.confirm-modal p {
+    margin: 0 0 1rem 0;
+    font-weight: 800;
+    font-size: 1.05rem;
+}
+.confirm-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+.confirm-actions button {
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+}
+.confirm-actions .confirm-cancel {
+    background: #E9EEF7;
+    color: #122555;
+}
+.confirm-actions .confirm-confirm {
+    background: #122555;
+    color: #ffffff;
+}
 .num-question {
     font-weight: 600;
     font-size: 20px;

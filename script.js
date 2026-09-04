@@ -72,4 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
     }
   });
+
+  // Redireciona para a página do quiz quando o botão Iniciar for clicado
+  const startBtn = document.getElementById('startBtn');
+  if (startBtn) {
+    startBtn.addEventListener('click', () => {
+      window.location.href = 'quizPage.html';
+    });
+  }
 });
