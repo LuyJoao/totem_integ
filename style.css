@@ -11,8 +11,8 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  font-family: Arial, sans-serif;
-  background-color: #0b318f;
+  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(180deg, #13317A 0%, #1E4798 50%, #122864 100%);
   color: white;
   display: flex;
   justify-content: center;

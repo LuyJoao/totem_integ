@@ -1,0 +1,217 @@
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-style: normal;
+    background: linear-gradient(180deg, #13317A 0%, #1E4798 50%, #122864 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* --- BOTÃO INVISÍVEL NO CANTO SUPERIOR DIREITO --- */
+#exit-fullscreen-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 10vw;
+  height: 10vw;
+  background: transparent;
+  border: none;
+  outline: none;
+  z-index: 9998;
+  cursor: pointer;
+}
+.logo-area .logo-circle{
+    width: 10vw;
+    height: 10vw;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1vw 3vw rgba(0,0,0,0.3);
+    margin-bottom: 3rem;
+}
+.logo-image{
+    width: 4.5rem;
+    height: auto;
+}
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30em;
+    height: 30rem;
+
+    background: #F4F9FE;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 70px;
+}
+.Title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 800;
+    font-size: 23px;
+    margin-top: 2rem;
+
+    color: #122555;
+}
+
+/* Toast exibido ao sair do quiz */
+.exit-toast {
+    position: fixed;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%) translateY(-10%);
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
+}
+.exit-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Modal de confirmação */
+.confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+.confirm-modal {
+    background: #FFFFFF;
+    color: #122555;
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    text-align: center;
+}
+.confirm-modal p {
+    margin: 0 0 1rem 0;
+    font-weight: 800;
+    font-size: 1.05rem;
+}
+.confirm-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+.confirm-actions button {
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+}
+.confirm-actions .confirm-cancel {
+    background: #E9EEF7;
+    color: #122555;
+}
+.confirm-actions .confirm-confirm {
+    background: #122555;
+    color: #ffffff;
+}
+.num-question {
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-right: 1rem;
+    color: #000000;
+}
+
+.question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+}
+.options-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    background: rgba(213, 223, 236, 0.2); /* D5DFEC a 20% */
+    border: 2px solid #D5DFEC; /* Stroke 100%, weight 5 */
+    box-sizing: border-box; /* faz o Weight 5 ficar "Inside" */
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 17px;
+    font-weight: 600;
+    width: 25rem;   
+    height: 3rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+} 
+.options-container:hover {
+    color: #13317A;
+    border: 2px solid #13317A; /* Stroke 100%, weight 5 */
+}
+.options-container.correct {
+    background: rgba(32, 160, 78, 0.1); /* #20A04E a 10% */
+    border: 1px solid #20A04E;
+}
+
+.options-container.incorrect {
+    background: rgba(228, 0, 22, 0.1); /* #E40016 a 10% */
+    border: 1px solid #E40016;
+}
+.next-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    width: 100%;
+}
+.next-button{
+    background: none;
+    border: none;
+    width: 20rem;
+    height: 3.5rem;
+    background: #13317A;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-radius: 50px;
+}
+.exit-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+.exit-text {
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration-line: underline;
+    /* distance of the underline from the text */
+    text-underline-offset: 20%;
+    /* thickness of the underline */
+    text-decoration-thickness: 7%;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #000000;
+}
+.exit-text:hover {
+    color: #13317A;
+}
