@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const elem = document.documentElement;
     if (!document.fullscreenElement && !document.webkitFullscreenElement) {
       if (elem.requestFullscreen) {
-        elem.requestFullscreen().catch(() => {});
+        elem.requestFullscreen().catch(() => { });
       } else if (elem.webkitRequestFullscreen) {
         elem.webkitRequestFullscreen();
       } else if (elem.msRequestFullscreen) {
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const quizQuestions = (Array.isArray(window.questions) && window.questions.length > 0)
-    ? window.questions 
+    ? window.questions
     : defaultQuestions;
 
   const pointsPerQuestion = 10;
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Atualiza o texto da pergunta preservando o número da questão
     if (title) {
-      title.innerHTML = `<div class="num-question">${currentQuestion + 1}/${quizQuestions.length}</div>${question.question}`;
+      title.textContent = question.question;
     }
 
     optionsContainer.innerHTML = '';

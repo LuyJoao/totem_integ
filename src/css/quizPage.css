@@ -99,7 +99,7 @@ html, body {
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 2.8vw;
+  font-size: 4vw;
   line-height: 1.2;
   width: 90%;
   margin-top: 1.5vh;
@@ -203,7 +203,7 @@ html, body {
   box-sizing: border-box;
   border-radius: 1vw;
   box-shadow: 0 0.3vw 0.3vw rgba(0,0,0,0.25);
-  font-size: 1.9vw;
+  font-size: 2.5vw;
   font-weight: 600;
   width: 68vw;
   height: 6.2vh;
@@ -254,7 +254,7 @@ html, body {
   height: 6.5vh;
   background: #13317A;
   color: #FFFFFF;
-  font-size: 1.9vw;
+  font-size: 2.5vw;
   font-weight: bold;
   border: none;
   border-radius: 100px;
@@ -292,7 +292,7 @@ html, body {
 
 .exit-text {
   font-weight: 600;
-  font-size: 1.7vw;
+  font-size: 2vw;
   display: flex;
   align-items: center;
   text-align: center;
