@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // --- GARANTIR E REATIVAR TELA CHEIA NO CARREGAMENTO ---
+  function requestFullscreen() {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen().catch(() => {});
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    }
+  }
+
+  // Tenta reentrar em Fullscreen imediatamente
+  requestFullscreen();
+
+  // Reativa tela cheia no primeiro clique/toque caso o navegador bloqueie o auto-fullscreen
+  const autoFullscreenHandler = () => {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+      requestFullscreen();
+    }
+    document.removeEventListener('click', autoFullscreenHandler);
+    document.removeEventListener('touchend', autoFullscreenHandler);
+  };
+  document.addEventListener('click', autoFullscreenHandler);
+  document.addEventListener('touchend', autoFullscreenHandler);
+
+  // --- LÓGICA DE SAÍDA E MODAL DO QUIZ ---
   const exitSelectors = ['#exit-button', '.exit-text', '.exit-button button', '.exit-area button'];
   let exitBtn = null;
   for (const sel of exitSelectors) {
@@ -7,12 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (exitBtn) {
-    exitBtn.addEventListener('click', () => {
-      // evita cliques repetidos
+    const handleExit = (e) => {
+      e.preventDefault();
       if (exitBtn.disabled) return;
       exitBtn.disabled = true;
 
-      // cria overlay de confirmação
+      // Cria overlay de confirmação
       const overlay = document.createElement('div');
       overlay.className = 'confirm-overlay';
       overlay.tabIndex = -1;
@@ -45,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.appendChild(modal);
       document.body.appendChild(overlay);
 
-      // foco inicial
       btnNo.focus();
 
       function cleanUp() {
@@ -54,22 +80,26 @@ document.addEventListener('DOMContentLoaded', () => {
         document.removeEventListener('keydown', onKeyDown);
       }
 
-      function onKeyDown(e) {
-        if (e.key === 'Escape') {
+      function onKeyDown(evt) {
+        if (evt.key === 'Escape') {
           cleanUp();
         }
       }
 
       document.addEventListener('keydown', onKeyDown);
 
-      btnNo.addEventListener('click', () => {
-        cleanUp();
-      });
+      btnNo.addEventListener('click', cleanUp);
+      btnNo.addEventListener('touchend', cleanUp);
 
-      btnYes.addEventListener('click', () => {
-        // pequeno delay para o usuário ver o clique
-        setTimeout(() => window.location.href = '../index.html', 150);
-      });
-    });
+      const confirmExit = () => {
+        setTimeout(() => window.location.href = '../../index.html', 150);
+      };
+
+      btnYes.addEventListener('click', confirmExit);
+      btnYes.addEventListener('touchend', confirmExit);
+    };
+
+    exitBtn.addEventListener('click', handleExit);
+    exitBtn.addEventListener('touchend', handleExit);
   }
 });
