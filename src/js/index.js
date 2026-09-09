@@ -66,10 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
     }
 
-    // Tecla ESC (Evita sair de tela cheia se um teclado estiver conectado)
-    if (event.key === 'Escape') {
-      event.preventDefault();
-    }
   });
 
 });
