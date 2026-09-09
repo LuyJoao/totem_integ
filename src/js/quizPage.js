@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function showResult() {
     if (title) title.textContent = 'Quiz concluído';
-    optionsContainer.innerHTML = `<p class="result-text" style="font-size: 1.8rem; text-align: center; margin: 2rem 0;">Você marcou <strong>${score}</strong> de <strong>${quizQuestions.length * pointsPerQuestion}</strong> pontos!</p>`;
+    optionsContainer.innerHTML = `<p class="result-text" text-align: center; margin: 2rem 0;">Você marcou <strong>${score}</strong> de <strong>${quizQuestions.length * pointsPerQuestion}</strong> pontos!</p>`;
     selectedOption = null;
     nextButton.textContent = 'RECOMEÇAR QUIZ';
     nextButton.disabled = false;
