@@ -390,6 +390,10 @@ html, body {
     .exit-area {
         margin-top: 0.75rem;
     }
+
+    .exit-text {
+        font-size: 3vw;
+    }
 }
 
 /* Computadores e notebooks: preserva os tamanhos-base como fallback. */
