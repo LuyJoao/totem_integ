@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.getElementById('start-overlay');
   const exitBtn = document.getElementById('exit-fullscreen-btn');
+  const startBtn = document.getElementById('startBtn');
 
   // --- GERENCIAMENTO DE TELA CHEIA ---
   function requestFullscreen() {
@@ -24,12 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Primeiro toque entra em Fullscreen e esconde o overlay inicial
+  // Primeiro toque/clique entra em Fullscreen e remove a camada do overlay
   if (overlay) {
-    overlay.addEventListener('click', () => {
+    const handleOverlayStart = (event) => {
+      event.preventDefault();
       requestFullscreen();
       overlay.style.display = 'none';
-    });
+      overlay.style.pointerEvents = 'none'; // Garante que cliques futuros passem diretamente para os botões abaixo
+    };
+
+    overlay.addEventListener('click', handleOverlayStart);
+    overlay.addEventListener('touchend', handleOverlayStart);
   }
 
   // Botão secreto invisível no canto superior direito para alternar Fullscreen
@@ -43,14 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Redireciona para a página do quiz quando o botão Iniciar for clicado
-  const startBtn = document.getElementById('startBtn');
+  // --- NAVEGAÇÃO PARA O QUIZ ---
   if (startBtn) {
-    startBtn.addEventListener('click', () => {
+    const handleStartQuiz = (event) => {
+      event.preventDefault(); // Evita execução duplicada por eventos touch + click sequenciais
       window.location.href = 'src/html/quizPage.html';
-    });
+    };
+
+    startBtn.addEventListener('click', handleStartQuiz);
+    startBtn.addEventListener('touchend', handleStartQuiz);
   }
-  
+
   // --- TRAVAS DE SEGURANÇA PARA TOTEM ---
 
   // 1. Desativa o menu de contexto (clique direito / toque longo)
@@ -60,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Bloqueia atalhos de teclado de inspeção e navegação
   document.addEventListener('keydown', (event) => {
-    
     // Ctrl+U (Exibir Código Fonte) e Ctrl+P (Imprimir)
     if (event.ctrlKey && ['u', 'U', 'p', 'P'].includes(event.key)) {
       event.preventDefault();
