@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const startBtn = document.getElementById('startBtn');
   if (startBtn) {
     startBtn.addEventListener('click', () => {
-      window.location.href = 'html/quizPage.html';
+      window.location.href = 'src/html/quizPage.html';
     });
   }
   
