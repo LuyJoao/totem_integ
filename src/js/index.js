@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.getElementById('start-overlay');
   const exitBtn = document.getElementById('exit-fullscreen-btn');
+  const startBtn = document.getElementById('startBtn');
 
   // --- GERENCIAMENTO DE TELA CHEIA ---
   function requestFullscreen() {
@@ -24,33 +25,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Primeiro toque entra em Fullscreen e esconde o overlay inicial
+  // Primeiro toque/clique entra em Fullscreen e remove a camada do overlay
   if (overlay) {
-    overlay.addEventListener('click', () => {
+    const handleOverlayStart = (event) => {
+      event.preventDefault();
       requestFullscreen();
       overlay.style.display = 'none';
-    });
+      overlay.style.pointerEvents = 'none';
+    };
+
+    overlay.addEventListener('click', handleOverlayStart);
+    overlay.addEventListener('touchend', handleOverlayStart);
   }
 
-  // Botão secreto invisível no canto superior direito para alternar Fullscreen
+  // --- BOTÃO SECRETO (REQUER 3 CLIQUES RÁPIDOS) ---
   if (exitBtn) {
-    exitBtn.addEventListener('click', () => {
-      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        requestFullscreen();
-      } else {
-        exitFullscreen();
+    let clickCount = 0;
+    let clickTimer = null;
+
+    const handleSecretClick = (event) => {
+      event.preventDefault();
+      clickCount++;
+
+      // Reseta o contador se demorar mais de 1.5 segundos entre os cliques
+      clearTimeout(clickTimer);
+      clickTimer = setTimeout(() => {
+        clickCount = 0;
+      }, 1500);
+
+      // Ao atingir 3 cliques, alterna o modo Tela Cheia
+      if (clickCount === 3) {
+        clickCount = 0;
+        clearTimeout(clickTimer);
+
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+          requestFullscreen();
+        } else {
+          exitFullscreen();
+        }
       }
-    });
+    };
+
+    exitBtn.addEventListener('click', handleSecretClick);
+    exitBtn.addEventListener('touchend', handleSecretClick);
   }
 
-  // Redireciona para a página do quiz quando o botão Iniciar for clicado
-  const startBtn = document.getElementById('startBtn');
+  // --- NAVEGAÇÃO PARA O QUIZ ---
   if (startBtn) {
-    startBtn.addEventListener('click', () => {
-      window.location.href = 'html/quizPage.html';
-    });
+    const handleStartQuiz = (event) => {
+      event.preventDefault();
+      window.location.href = 'src/html/quizPage.html';
+    };
+
+    startBtn.addEventListener('click', handleStartQuiz);
+    startBtn.addEventListener('touchend', handleStartQuiz);
   }
-  
+
   // --- TRAVAS DE SEGURANÇA PARA TOTEM ---
 
   // 1. Desativa o menu de contexto (clique direito / toque longo)
@@ -60,8 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Bloqueia atalhos de teclado de inspeção e navegação
   document.addEventListener('keydown', (event) => {
-    
-    // Ctrl+U (Exibir Código Fonte) e Ctrl+P (Imprimir)
     if (event.ctrlKey && ['u', 'U', 'p', 'P'].includes(event.key)) {
       event.preventDefault();
     }
