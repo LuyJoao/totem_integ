@@ -94,9 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
     }
 
-    if (event.key === 'Escape') {
-      event.preventDefault();
-    }
   });
 
 });

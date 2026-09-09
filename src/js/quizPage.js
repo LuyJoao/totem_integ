@@ -1,31 +1,85 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- GARANTIR E REATIVAR TELA CHEIA NO CARREGAMENTO ---
-  function requestFullscreen() {
-    const elem = document.documentElement;
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen().catch(() => {});
-    } else if (elem.webkitRequestFullscreen) {
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      elem.msRequestFullscreen();
-    }
+  const questionNumber = document.querySelector('.num-question');
+  const questionText = document.querySelector('.question-text');
+  const optionsContainer = document.querySelector('.question-container');
+  const nextButton = document.querySelector('.next-button');
+  const title = document.querySelector('.Title');
+  const quizContainer = document.querySelector('.quiz-container');
+  const quizQuestions = Array.isArray(window.questions) ? window.questions : [];
+  const pointsPerQuestion = 10;
+  let currentQuestion = 0;
+  let score = 0;
+  let selectedOption = null;
+
+  function showQuestion() {
+    const question = quizQuestions[currentQuestion];
+    selectedOption = null;
+    questionNumber.textContent = `${currentQuestion + 1}/${quizQuestions.length}`;
+    questionText.textContent = question.question;
+    optionsContainer.innerHTML = '';
+    nextButton.disabled = true;
+    nextButton.textContent = currentQuestion === quizQuestions.length - 1
+      ? 'FINALIZAR QUIZ'
+      : 'PRÓXIMA PERGUNTA';
+
+    question.options.forEach((option, optionIndex) => {
+      const optionButton = document.createElement('button');
+      optionButton.type = 'button';
+      optionButton.className = 'options-container';
+      optionButton.textContent = option;
+      optionButton.addEventListener('click', () => {
+        if (selectedOption !== null) return;
+
+        selectedOption = optionIndex;
+        nextButton.disabled = false;
+        const correctOption = question.answer;
+        const optionButtons = optionsContainer.querySelectorAll('.options-container');
+
+        optionButtons.forEach((button, index) => {
+          button.disabled = true;
+          if (index === correctOption) {
+            button.classList.add('correct');
+          }
+        });
+
+        if (optionIndex !== correctOption) {
+          optionButton.classList.add('incorrect');
+        }
+      });
+      optionsContainer.appendChild(optionButton);
+    });
   }
 
-  // Tenta reentrar em Fullscreen imediatamente
-  requestFullscreen();
+  function showResult() {
+    title.textContent = 'Quiz concluído';
+    optionsContainer.innerHTML = `<p class="result-text">Você marcou ${score} de ${quizQuestions.length * pointsPerQuestion} pontos.</p>`;
+    selectedOption = null;
+    nextButton.textContent = 'RECOMEÇAR QUIZ';
+    nextButton.disabled = false;
+    nextButton.onclick = () => window.location.reload();
+  }
 
-  // Reativa tela cheia no primeiro clique/toque caso o navegador bloqueie o auto-fullscreen
-  const autoFullscreenHandler = () => {
-    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-      requestFullscreen();
+  nextButton.addEventListener('click', () => {
+    if (selectedOption === null) return;
+
+    if (selectedOption === quizQuestions[currentQuestion].answer) {
+      score += pointsPerQuestion;
     }
-    document.removeEventListener('click', autoFullscreenHandler);
-    document.removeEventListener('touchend', autoFullscreenHandler);
-  };
-  document.addEventListener('click', autoFullscreenHandler);
-  document.addEventListener('touchend', autoFullscreenHandler);
 
-  // --- LÓGICA DE SAÍDA E MODAL DO QUIZ ---
+    currentQuestion += 1;
+    if (currentQuestion < quizQuestions.length) {
+      showQuestion();
+    } else {
+      showResult();
+    }
+  });
+
+  if (quizQuestions.length > 0) {
+    showQuestion();
+  } else {
+    quizContainer.textContent = 'Não foi possível carregar as perguntas.';
+  }
+
   const exitSelectors = ['#exit-button', '.exit-text', '.exit-button button', '.exit-area button'];
   let exitBtn = null;
   for (const sel of exitSelectors) {
@@ -34,12 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (exitBtn) {
-    const handleExit = (e) => {
-      e.preventDefault();
+    exitBtn.addEventListener('click', () => {
+      // evita cliques repetidos
       if (exitBtn.disabled) return;
       exitBtn.disabled = true;
 
-      // Cria overlay de confirmação
+      // cria overlay de confirmação
       const overlay = document.createElement('div');
       overlay.className = 'confirm-overlay';
       overlay.tabIndex = -1;
@@ -72,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.appendChild(modal);
       document.body.appendChild(overlay);
 
+      // foco inicial
       btnNo.focus();
 
       function cleanUp() {
@@ -80,26 +135,22 @@ document.addEventListener('DOMContentLoaded', () => {
         document.removeEventListener('keydown', onKeyDown);
       }
 
-      function onKeyDown(evt) {
-        if (evt.key === 'Escape') {
+      function onKeyDown(e) {
+        if (e.key === 'Escape') {
           cleanUp();
         }
       }
 
       document.addEventListener('keydown', onKeyDown);
 
-      btnNo.addEventListener('click', cleanUp);
-      btnNo.addEventListener('touchend', cleanUp);
+      btnNo.addEventListener('click', () => {
+        cleanUp();
+      });
 
-      const confirmExit = () => {
-        setTimeout(() => window.location.href = '../../index.html', 150);
-      };
-
-      btnYes.addEventListener('click', confirmExit);
-      btnYes.addEventListener('touchend', confirmExit);
-    };
-
-    exitBtn.addEventListener('click', handleExit);
-    exitBtn.addEventListener('touchend', handleExit);
+      btnYes.addEventListener('click', () => {
+        // pequeno delay para o usuário ver o clique
+        setTimeout(() => window.location.href = '../index.html', 150);
+      });
+    });
   }
 });
