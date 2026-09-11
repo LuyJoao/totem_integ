@@ -394,6 +394,29 @@ html, body {
     .exit-text {
         font-size: 3vw;
     }
+    .confirm-modal {
+    width: calc(80vw - 1rem);
+    padding: 1.5rem 1rem;
+    border-radius: 1.25rem;
+  }
+
+  .confirm-modal p {
+    font-size: clamp(0.75rem, 5vw, 1.3rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .confirm-actions {
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .confirm-actions button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.75rem 1rem;
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    border-radius: 0.75rem;
+  }
 }
 
 /* Computadores e notebooks: preserva os tamanhos-base como fallback. */
@@ -447,57 +470,17 @@ html, body {
     .exit-text {
         font-size: 15px;
     }
+    .confirm-modal {
+        width: min(60vw, 32rem);
+    }
+
+    .confirm-modal p {
+        font-size: clamp(1.2rem, 2vw, 1.4rem);
+    }
+
+    .confirm-actions button {
+        flex: 1 1 8rem;
+        font-size: clamp(1rem, 1.5vw, 1rem);
+        max-width: 10rem;
+    }
 }
-
-/* Totens e monitores 4K: usa o espaço disponível sem perder proporção. */
-/* Este breakpoint está temporariamente desativado no arquivo atual. */
-/* @media (min-width: 1600px) {
-    .logo-area .logo-circle {
-        width: clamp(10rem, 10vw, 16rem);
-        height: clamp(10rem, 10vw, 16rem);
-        margin-top: 0.5rem;
-    }
-
-    .logo-image {
-        width: clamp(5rem, 4.5vw, 8rem);
-    }
-
-    .quiz-container {
-        width: clamp(42rem, 42vw, 68rem);
-        min-height: clamp(38rem, 48vh, 58rem);
-        padding: clamp(2rem, 2.5vw, 4rem);
-        border-radius: clamp(3rem, 3vw, 5rem);
-    }
-
-    .num-question {
-        font-size: clamp(1.25rem, 1.4vw, 2rem);
-    }
-
-    .Title {
-        font-size: clamp(1.75rem, 2vw, 3rem);
-        line-height: 1.25;
-    }
-
-    .question-container {
-        margin-top: clamp(2rem, 3vh, 4rem);
-    }
-
-    .options-container {
-        width: min(80%, 50rem);
-        min-height: clamp(4rem, 5vh, 5.5rem);
-        height: auto;
-        padding: 1rem 1.5rem;
-        margin-bottom: clamp(1rem, 2vh, 2.5rem);
-        font-size: clamp(1.25rem, 1.4vw, 2rem);
-    }
-
-    .next-button {
-        width: min(70%, 38rem);
-        height: clamp(4rem, 5vh, 5.5rem);
-        font-size: clamp(1.1rem, 1.2vw, 1.75rem);
-    }
-
-    .exit-text {
-        font-size: clamp(1rem, 1vw, 1.4rem);
-    }
-} */
