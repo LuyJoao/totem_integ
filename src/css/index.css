@@ -64,7 +64,6 @@ html, body {
   width: 100vw;
   min-height: 100vh;
   height: auto;
-  padding: 4vh 0;
   text-align: center;
 }
 
@@ -88,18 +87,40 @@ html, body {
 }
 
 /* Títulos da Página */
+.title-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
 .title-area h1 {
   font-size: 5.5vw;
   line-height: 1.2;
   margin-bottom: 1vh;
   font-weight: 800;
+  width: 80%;
 }
 
 .title-area p {
   color: #ffcc00;
   font-size: 3vw;
-  font-weight: bold;
-  letter-spacing: 2px;
+  font-weight: 600;
+  letter-spacing: 20%;
+}
+.title-area #sub-title {
+  /* Transformando ideias em negócios inovadores desde 2005. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 2vh;
+  line-height: 5vh;
+  letter-spacing: 0.25em;
+  color: #E9EFF6;
+
+  opacity: 0.8;
+
 }
 
 /* Botão do Quiz */
@@ -173,7 +194,8 @@ html, body {
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  box-shadow: 0 0.8vw 1.5vw rgba(0,0,0,0.25);
+  box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.12),
+    0 0.08rem 0.2rem rgba(0, 0, 0, 0.08);
 }
 
 .partner-card img {
@@ -213,7 +235,6 @@ html, body {
     width: 100%;
     min-height: 100dvh;
     height: auto;
-    padding: 1.5rem 0.75rem;
     gap: 1.5rem;
     justify-content: space-between;
   }
@@ -275,7 +296,6 @@ html, body {
     width: 100%;
     min-height: 100vh;
     height: auto;
-    padding: 2rem 1rem;
     gap: 1.5rem;
     justify-content: space-between;
   }
@@ -283,6 +303,7 @@ html, body {
   .logo-area .logo-circle {
     width: clamp(7rem, 10vw, 10rem);
     height: clamp(7rem, 10vw, 10rem);
+    margin-top: 0.5rem;
   }
 
   .title-area h1 {
@@ -307,8 +328,8 @@ html, body {
   }
 
   .partner-card {
-    width: clamp(7rem, 12vw, 11rem);
-    height: clamp(7rem, 12vw, 11rem);
+    width: clamp(7rem, 10vw, 7rem);
+    height: clamp(7rem, 10vw, 7rem);
     border-radius: 1.5rem;
     margin: 0 0.75rem;
   }
