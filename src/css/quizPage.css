@@ -1,3 +1,4 @@
+/* Remove estilos padrão e impede seleção de texto no totem. */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,18 +8,21 @@
   -webkit-touch-callout: none;
 }
 
+/* Define a área da página, o fundo e o alinhamento geral do quiz. */
 html, body {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  font-style: normal;
-  background: linear-gradient(180deg, #13317A 0%, #1E4798 50%, #122864 100%);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-style: normal;
+    background: linear-gradient(180deg, #13317A 0%, #1E4798 50%, #122864 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
 }
 
 /* --- BOTÃO INVISÍVEL NO CANTO SUPERIOR DIREITO --- */
@@ -34,26 +38,24 @@ html, body {
   z-index: 9998;
   cursor: pointer;
 }
-
-/* --- LOGO --- */
-.logo-area {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2vh;
+/* Cria o círculo branco que envolve a logo da INTEG. */
+.logo-area .logo-circle{
+    width: 10vw;
+    height: 10vw;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1vw 3vw rgba(0,0,0,0.3);
+    margin-bottom: 1rem;
 }
-
-.logo-area .logo-circle {
-  width: 15vw;
-  height: 15vw;
-  background-color: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 1vw 3vw rgba(0,0,0,0.3);
+/* Tamanho padrão da imagem da logo. */
+.logo-image{
+    width: 4.5rem;
+    height: auto;
 }
-
+/* Ajusta a imagem para preencher o círculo sem distorção. */
 .logo-image {
   width: 80%;
   height: 80%;
@@ -70,43 +72,39 @@ html, body {
   padding: 2.5vh 4vw;
   background: #F4F9FE;
   box-shadow: 0 1vw 3vw rgba(0,0,0,0.25);
-  border-radius: 3.5vw;
+  border-radius: 5vw;
 }
 
 /* --- NÚMERO DA QUESTÃO --- */
 .num-question-container {
-  width: 90%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 0.5vh;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top:0.5rem;
 }
 
+/* Estilo do indicador de progresso, como 1/8. */
 .num-question {
-  font-weight: 600;
-  font-size: 2.2vw;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #000000;
+    font-weight: 600;
+    font-size: 2.5vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
 }
 
-/* --- PERGUNTA --- */
+/* Formata o título e o texto da pergunta atual. */
 .Title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 4vw;
-  line-height: 1.2;
-  width: 90%;
-  margin-top: 1.5vh;
-  color: #122555;
-  text-align: center;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    font-weight: 800;
+    font-size: 2.5vw;
+    width: 80%;
+    color: #122555;
 }
-
-/* --- TOAST DE SAÍDA --- */
+/* Mensagem temporária exibida durante a saída do quiz. */
 .exit-toast {
   position: fixed;
   left: 50%;
@@ -129,6 +127,7 @@ html, body {
   transform: translateX(-50%) translateY(0);
 }
 
+/* Fundo e conteúdo do modal de confirmação de saída. */
 /* --- MODAL DE CONFIRMAÇÃO --- */
 .confirm-overlay {
   position: fixed;
@@ -156,12 +155,14 @@ html, body {
   font-size: 2.5vw;
 }
 
+/* Organiza os botões Não e Sim do modal. */
 .confirm-actions {
   display: flex;
   gap: 2vw;
   justify-content: center;
 }
 
+/* Estilo comum dos botões do modal. */
 .confirm-actions button {
   padding: 1.5vh 4vw;
   border-radius: 1vw;
@@ -172,6 +173,7 @@ html, body {
   font-family: inherit;
 }
 
+/* Cores específicas para cancelar ou confirmar a saída. */
 .confirm-actions .confirm-cancel {
   background: #E9EEF7;
   color: #122555;
@@ -183,6 +185,7 @@ html, body {
 }
 
 /* --- ÁREA DAS ALTERNATIVAS --- */
+/* Organiza verticalmente as alternativas da pergunta. */
 .question-container {
   display: flex;
   flex-direction: column;
@@ -192,6 +195,7 @@ html, body {
 }
 
 /* --- ALTERNATIVAS --- */
+/* Estilo base dos botões de resposta. */
 .options-container {
   display: flex;
   align-items: center;
@@ -219,60 +223,70 @@ html, body {
   border: 0.15vw solid #13317A;
 }
 
+/* Pequena animação visual ao pressionar uma alternativa. */
 .options-container:active {
   transform: scale(0.98);
 }
 
+/* Estado de alternativa selecionada antes da correção visual. */
 .options-container.selected {
   color: #13317A;
   border-color: #13317A;
   background: rgba(19,49,122,0.12);
 }
 
+/* Destaca em verde a resposta correta. */
 .options-container.correct {
   background: rgba(32,160,78,0.1);
   border: 0.15vw solid #20A04E;
 }
 
+/* Destaca em vermelho a resposta escolhida incorretamente. */
 .options-container.incorrect {
   background: rgba(228,0,22,0.1);
   border: 0.15vw solid #E40016;
 }
 
 /* --- BOTÃO PRÓXIMA PERGUNTA --- */
+/* Centraliza o botão que avança o quiz. */
 .next-button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1vh;
-  width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+    width: 100%;
 }
 
-.next-button {
-  width: 48vw;
-  height: 6.5vh;
-  background: #13317A;
-  color: #FFFFFF;
-  font-size: 2.5vw;
-  font-weight: bold;
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
-  font-family: inherit;
-  transition: transform 0.15s ease, background-color 0.15s ease;
+/* Estilo principal do botão de avanço. */
+.next-button{
+    background: none;
+    border: none;
+    box-sizing: border-box;
+    width: 60vw;
+    height: 5vw;
+    background: #13317A;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 2vw;
 }
 
+/* Feedback visual ao pressionar o botão de avanço. */
 .next-button:active {
   transform: scale(0.97);
   background: #0e2865;
 }
 
+/* Impede o avanço enquanto nenhuma alternativa foi escolhida. */
 .next-button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
 /* --- RESULTADO --- */
+/* Formata a pontuação exibida ao final do quiz. */
 .result-text {
   color: #122555;
   font-size: 3.5vw;
@@ -282,6 +296,7 @@ html, body {
 }
 
 /* --- BOTÃO SAIR DO QUIZ --- */
+/* Posiciona o botão de saída abaixo dos controles. */
 .exit-area {
   display: flex;
   justify-content: center;
@@ -289,6 +304,7 @@ html, body {
   margin-top: 1vh;
 }
 
+/* Estilo do comando para sair do quiz. */
 .exit-text {
   font-weight: 600;
   font-size: 2vw;
@@ -306,142 +322,165 @@ html, body {
 }
 
 .exit-text:hover {
-  color: #13317A;
+    color: #13317A;
 }
 
+/* Celulares: mantém o quiz confortável sem ultrapassar a largura da tela. */
+@media (max-width: 600px) {
+    html, body {
+        min-height: 100dvh;
+    }
 
+    .logo-area .logo-circle {
+        width: clamp(4.5rem, 22vw, 7rem);
+        height: clamp(4.5rem, 22vw, 7rem);
+        margin-top: 0.5rem;
+    }
 
+    .logo-image {
+        width: clamp(2.5rem, 13vw, 4rem);
+    }
 
+    .quiz-container {
+        min-height: 0;
+        padding: 1rem 0.75rem;
+        margin: 0.625rem;
+        border-radius: 2rem;
+    }
 
-/* =====================================================
-   CARROSSEL DA TELA DE RESULTADOS
-   ===================================================== */
+    .num-question-container {
+        width: 94%;
+        margin-top: 0;
+    }
 
-.result-carousel {
-    display: none;
+    .num-question {
+        font-size: clamp(0.9rem, 4vw, 1.15rem);
+    }
+
+    .Title {
+        width: 94%;
+        font-size: clamp(1rem, 5vw, 1.4rem);
+        line-height: 1.25;
+        text-align: center;
+    }
+
+    .question-container {
+        margin-top: 1.25rem;
+    }
+
+    .options-container,
+    .next-button {
+        width: 100%;
+        max-width: 25rem;
+    }
+
+    .options-container {
+        min-height: 3.25rem;
+        height: auto;
+        padding: 0.65rem 0.75rem;
+        font-size: clamp(0.9rem, 4vw, 1.05rem);
+        text-align: center;
+    }
+
+    .next-button {
+        height: 3.25rem;
+        font-size: 0.9rem;
+    }
+
+    .exit-area {
+        margin-top: 0.75rem;
+    }
+
+    .exit-text {
+        font-size: 3vw;
+    }
+    .confirm-modal {
+    width: calc(80vw - 1rem);
+    padding: 1.5rem 1rem;
+    border-radius: 1.25rem;
+  }
+
+  .confirm-modal p {
+    font-size: clamp(0.75rem, 5vw, 1.3rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .confirm-actions {
     width: 100%;
-    max-width: 1400px;
-    margin: 2rem auto 1rem;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    gap: 0.75rem;
+  }
+
+  .confirm-actions button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.75rem 1rem;
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    border-radius: 0.75rem;
+  }
 }
 
-/* Janela que limita o conteúdo */
-.carousel-window {
-    width: 100%;
-    max-width: 1200px;
-    overflow: hidden;
-    border-radius: 20px;
-}
-
-/* Faixa que se movimenta */
-.carousel-track {
-    display: flex;
-    gap: 30px;
-    transition: transform 0.45s ease;
-    will-change: transform;
-}
-
-/* Cards */
-.carousel-card {
-    flex: 0 0 500px;
-    width: 500px;
-    height: 500px;
-    border-radius: 24px;
-    overflow: hidden;
-    background: #ffffff;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-/* Imagem */
-.carousel-card img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    pointer-events: none;
-}
-
-/* Setas */
-.carousel-arrow {
-    flex: 0 0 auto;
-    width: 65px;
-    height: 65px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.65);
-    color: white;
-    font-size: 32px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
-    transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.carousel-arrow:hover {
-    transform: scale(1.08);
-    background: rgba(0, 0, 0, 0.8);
-}
-
-.carousel-arrow:active {
-    transform: scale(0.95);
-}
-
-/* =====================================================
-   TABLET / TELAS MENORES
-   ===================================================== */
-
-@media (max-width: 1100px) {
-
-    .carousel-card {
-        flex-basis: 400px;
-        width: 400px;
-        height: 400px;
+/* Computadores e notebooks: preserva os tamanhos-base como fallback. */
+@media (min-width: 601px) and (max-width: 1599px) {
+    .logo-area .logo-circle {
+      width: clamp(7rem, 10vw, 10rem);
+      height: clamp(7rem, 10vw, 10rem);
+        margin-top: 0.5rem;
     }
 
-    .carousel-window {
-        max-width: 850px;
+    .logo-image {
+        width: 4.5rem;
     }
 
-    .carousel-track {
-        gap: 20px;
+    .quiz-container {
+        width: 30em;
+        min-height: 30rem;
+        height: auto;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 70px;
     }
 
-    .carousel-arrow {
-        width: 55px;
-        height: 55px;
-        font-size: 26px;
-    }
-}
-
-/* =====================================================
-   TOTEM / TELA MENOR
-   ===================================================== */
-
-@media (max-width: 800px) {
-
-    .result-carousel {
-        gap: 10px;
+    .num-question {
+        font-size: 20px;
     }
 
-    .carousel-card {
-        flex-basis: 320px;
-        width: 320px;
-        height: 320px;
+    .Title {
+        width: 80%;
+        font-size: 23px;
     }
 
-    .carousel-window {
-        max-width: 680px;
+    .question-container {
+        margin-top: 2rem;
     }
 
-    .carousel-arrow {
-        width: 48px;
-        height: 48px;
-        font-size: 22px;
+    .options-container {
+        width: 25rem;
+        min-height: 0;
+        height: 3rem;
+        padding: 0;
+        font-size: 17px;
+    }
+
+    .next-button {
+        width: 20rem;
+        height: 3.5rem;
+        font-size: inherit;
+    }
+
+    .exit-text {
+        font-size: 15px;
+    }
+    .confirm-modal {
+        width: min(60vw, 32rem);
+    }
+
+    .confirm-modal p {
+        font-size: clamp(1.2rem, 2vw, 1.4rem);
+    }
+
+    .confirm-actions button {
+        flex: 1 1 8rem;
+        font-size: clamp(1rem, 1.5vw, 1rem);
+        max-width: 10rem;
     }
 }
