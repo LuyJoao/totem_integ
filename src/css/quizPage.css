@@ -325,6 +325,141 @@ html, body {
     color: #13317A;
 }
 
+/* =========================================================
+   CARROSSEL DA TELA DE RESULTADO
+   ========================================================= */
+
+/* Escondido enquanto o usuário responde o quiz */
+#result-carousel {
+    display: none;
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Título EMPRESAS */
+#result-carousel .partners-title {
+    font-size: 2.6vw;
+    letter-spacing: 3px;
+    margin-bottom: 1.2vh;
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* Área que corta o carrossel nas laterais */
+#result-carousel .carousel-container {
+    width: 100vw;
+    overflow: hidden;
+    margin-bottom: 2vh;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Linha das empresas */
+#result-carousel .carousel-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+}
+
+/* Movimento do carrossel */
+#result-carousel .track-right {
+    animation: resultScrollRight 50s linear infinite;
+}
+
+/* Cards padronizados */
+#result-carousel .partner-card {
+    width: 10vw;
+    height: 10vw;
+    min-width: 7rem;
+    min-height: 7rem;
+
+    background-color: white;
+    border-radius: 1.5rem;
+
+    margin: 0 0.75rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0.25rem 0.6rem rgba(0, 0, 0, 0.12),
+        0 0.08rem 0.2rem rgba(0, 0, 0, 0.08);
+}
+
+/* Faz TODAS as logos caberem no mesmo espaço */
+#result-carousel .partner-card img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Loop infinito */
+@keyframes resultScrollRight {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    #result-carousel .partners-title {
+        font-size: clamp(0.8rem, 3.5vw, 1rem);
+        letter-spacing: 1px;
+        margin-bottom: 0.6rem;
+    }
+
+    #result-carousel .carousel-container {
+        margin-bottom: 1rem;
+    }
+
+    #result-carousel .partner-card {
+        width: clamp(5rem, 22vw, 7rem);
+        height: clamp(5rem, 22vw, 7rem);
+        min-width: 0;
+        min-height: 0;
+        border-radius: 1rem;
+        margin: 0 0.5rem;
+    }
+}
+
+
+/* =========================================================
+   COMPUTADOR / TOTEM
+   ========================================================= */
+
+@media (min-width: 601px) and (max-width: 1599px) {
+
+    #result-carousel .partners-title {
+        font-size: clamp(1rem, 1.5vw, 1.4rem);
+    }
+
+    #result-carousel .partner-card {
+        width: 7rem;
+        height: 7rem;
+        min-width: 7rem;
+        min-height: 7rem;
+        border-radius: 1.5rem;
+        margin: 0 0.75rem;
+    }
+}
+
 /* Celulares: mantém o quiz confortável sem ultrapassar a largura da tela. */
 @media (max-width: 600px) {
     html, body {
