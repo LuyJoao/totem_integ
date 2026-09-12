@@ -308,3 +308,140 @@ html, body {
 .exit-text:hover {
   color: #13317A;
 }
+
+
+
+
+
+/* =====================================================
+   CARROSSEL DA TELA DE RESULTADOS
+   ===================================================== */
+
+.result-carousel {
+    display: none;
+    width: 100%;
+    max-width: 1400px;
+    margin: 2rem auto 1rem;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Janela que limita o conteúdo */
+.carousel-window {
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+/* Faixa que se movimenta */
+.carousel-track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.45s ease;
+    will-change: transform;
+}
+
+/* Cards */
+.carousel-card {
+    flex: 0 0 500px;
+    width: 500px;
+    height: 500px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Imagem */
+.carousel-card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* Setas */
+.carousel-arrow {
+    flex: 0 0 auto;
+    width: 65px;
+    height: 65px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.65);
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.carousel-arrow:hover {
+    transform: scale(1.08);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-arrow:active {
+    transform: scale(0.95);
+}
+
+/* =====================================================
+   TABLET / TELAS MENORES
+   ===================================================== */
+
+@media (max-width: 1100px) {
+
+    .carousel-card {
+        flex-basis: 400px;
+        width: 400px;
+        height: 400px;
+    }
+
+    .carousel-window {
+        max-width: 850px;
+    }
+
+    .carousel-track {
+        gap: 20px;
+    }
+
+    .carousel-arrow {
+        width: 55px;
+        height: 55px;
+        font-size: 26px;
+    }
+}
+
+/* =====================================================
+   TOTEM / TELA MENOR
+   ===================================================== */
+
+@media (max-width: 800px) {
+
+    .result-carousel {
+        gap: 10px;
+    }
+
+    .carousel-card {
+        flex-basis: 320px;
+        width: 320px;
+        height: 320px;
+    }
+
+    .carousel-window {
+        max-width: 680px;
+    }
+
+    .carousel-arrow {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+    }
+}
