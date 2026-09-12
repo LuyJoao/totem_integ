@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextButton = document.querySelector('.next-button');
   const title = document.querySelector('.Title');
   const quizContainer = document.querySelector('.quiz-container');
+  const resultCarousel = document.getElementById('result-carousel');
 
   // Perguntas padrão caso window.questions não esteja definido
   const defaultQuestions = [
@@ -167,6 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function showResult() {
     if (title) title.textContent = 'Quiz concluído';
+    if (resultCarousel) {
+        resultCarousel.style.display = 'flex';
+    }
     optionsContainer.innerHTML = `<p class="result-text" text-align: center; margin: 2rem 0;">Você marcou <strong>${score}</strong> de <strong>${quizQuestions.length * pointsPerQuestion}</strong> pontos!</p>`;
     selectedOption = null;
     nextButton.textContent = 'RECOMEÇAR QUIZ';
