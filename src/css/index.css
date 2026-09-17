@@ -283,7 +283,7 @@ html, body {
 }
 
 /* Computadores e notebooks */
-@media (min-width: 601px) and (max-width: 2400px) {
+@media (min-width: 601px) and (max-width: 1600px) {
   html,
   body {
     min-height: 100vh;
