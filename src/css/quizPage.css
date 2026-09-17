@@ -20,6 +20,7 @@ html, body {
     color: white;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     margin: 0 auto;
 }
@@ -523,7 +524,7 @@ html, body {
 }
 
 /* Computadores e notebooks: preserva os tamanhos-base como fallback. */
-@media (min-width: 601px) and (max-width: 1600px) {
+@media (min-width: 601px) and (max-width: 1599px) {
     .logo-area .logo-circle {
       width: clamp(7rem, 10vw, 10rem);
       height: clamp(7rem, 10vw, 10rem);
