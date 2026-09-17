@@ -414,15 +414,6 @@ html, body {
     }
 }
 
-/* =========================================================
-   COMPUTADOR
-   ========================================================= */
-
-@media (min-width: 601px) and (max-width: 1599px) {
-
- 
-}
-
 /* Celulares: mantém o quiz confortável sem ultrapassar a largura da tela. */
 @media (max-width: 600px) {
     html, body {
