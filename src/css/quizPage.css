@@ -332,7 +332,7 @@ html, body {
 /* Escondido enquanto o usuário responde o quiz */
 #result-carousel {
     display: none;
-    width: 100vw;
+  width: 100%;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
@@ -340,16 +340,18 @@ html, body {
 
 /* Título EMPRESAS */
 #result-carousel .partners-title {
-    font-size: 2.6vw;
-    letter-spacing: 3px;
+  font-size: clamp(1rem, 2.6vw, 2rem);
+  letter-spacing: clamp(1px, 0.2vw, 3px);
     margin-bottom: 1.2vh;
     color: #ffcc00;
     font-weight: bold;
+  text-align: center;
 }
 
 /* Área que corta o carrossel nas laterais */
 #result-carousel .carousel-container {
-    width: 100vw;
+  width: 100%;
+  max-width: 100vw;
     overflow: hidden;
     margin-bottom: 2vh;
     display: flex;
@@ -370,10 +372,10 @@ html, body {
 
 /* Cards padronizados */
 #result-carousel .partner-card {
-    width: 10vw;
-    height: 10vw;
-    min-width: 7rem;
-    min-height: 7rem;
+  width: clamp(5rem, 10vw, 10rem);
+  aspect-ratio: 1;
+  min-width: 0;
+  min-height: 0;
 
     background-color: white;
     border-radius: 1.5rem;
@@ -412,52 +414,13 @@ html, body {
     }
 }
 
-
 /* =========================================================
-   CELULAR
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    #result-carousel .partners-title {
-        font-size: clamp(0.8rem, 3.5vw, 1rem);
-        letter-spacing: 1px;
-        margin-bottom: 0.6rem;
-    }
-
-    #result-carousel .carousel-container {
-        margin-bottom: 1rem;
-    }
-
-    #result-carousel .partner-card {
-        width: clamp(5rem, 22vw, 7rem);
-        height: clamp(5rem, 22vw, 7rem);
-        min-width: 0;
-        min-height: 0;
-        border-radius: 1rem;
-        margin: 0 0.5rem;
-    }
-}
-
-
-/* =========================================================
-   COMPUTADOR / TOTEM
+   COMPUTADOR
    ========================================================= */
 
 @media (min-width: 601px) and (max-width: 1599px) {
 
-    #result-carousel .partners-title {
-        font-size: clamp(1rem, 1.5vw, 1.4rem);
-    }
-
-    #result-carousel .partner-card {
-        width: 7rem;
-        height: 7rem;
-        min-width: 7rem;
-        min-height: 7rem;
-        border-radius: 1.5rem;
-        margin: 0 0.75rem;
-    }
+ 
 }
 
 /* Celulares: mantém o quiz confortável sem ultrapassar a largura da tela. */
@@ -552,6 +515,21 @@ html, body {
     font-size: clamp(0.9rem, 4vw, 1.1rem);
     border-radius: 0.75rem;
   }
+  #result-carousel .partners-title {
+    font-size: clamp(0.8rem, 3.5vw, 1rem);
+    letter-spacing: 1px;
+    margin-bottom: 0.6rem;
+    }
+
+    #result-carousel .carousel-container {
+        margin-bottom: 1rem;
+    }
+
+    #result-carousel .partner-card {
+        width: clamp(4.5rem, 22vw, 7rem);
+        border-radius: 1rem;
+        margin: 0 0.5rem;
+    }
 }
 
 /* Computadores e notebooks: preserva os tamanhos-base como fallback. */
@@ -617,5 +595,14 @@ html, body {
         flex: 1 1 8rem;
         font-size: clamp(1rem, 1.5vw, 1rem);
         max-width: 10rem;
+    }
+       #result-carousel .partners-title {
+        font-size: clamp(1rem, 1.5vw, 1.4rem);
+    }
+
+    #result-carousel .partner-card {
+      width: clamp(6rem, 14vw, 8rem);
+        border-radius: 1.5rem;
+        margin: 0 0.75rem;
     }
 }
