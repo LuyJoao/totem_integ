@@ -533,7 +533,7 @@ html, body {
 }
 
 /* Computadores e notebooks: preserva os tamanhos-base como fallback. */
-@media (min-width: 601px) and (max-width: 1599px) {
+@media (min-width: 601px) and (max-width: 1600px) {
     .logo-area .logo-circle {
       width: clamp(7rem, 10vw, 10rem);
       height: clamp(7rem, 10vw, 10rem);
