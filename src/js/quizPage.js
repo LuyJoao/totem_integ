@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- GERENCIAMENTO DE TELA CHEIA EM TOTEM ---
+  // Ativa o modo de tela cheia usando a API compatível com o navegador disponível.
   function forceFullscreen() {
     const elem = document.documentElement;
     if (!document.fullscreenElement && !document.webkitFullscreenElement) {
@@ -13,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Reativa tela cheia no primeiro toque/clique da página
+  // Reativa tela cheia no primeiro toque ou clique da página e remove os ouvintes depois disso.
   const handleAutoFullscreen = () => {
     forceFullscreen();
     document.removeEventListener('click', handleAutoFullscreen);
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let clickCount = 0;
     let clickTimer = null;
 
+    // Conta três cliques no botão invisível para entrar ou sair da tela cheia.
     const handleSecretClick = (event) => {
       event.preventDefault();
       clickCount++;
@@ -113,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let score = 0;
   let selectedOption = null;
 
+  // Exibe a pergunta atual, atualiza o progresso e cria suas opções de resposta.
   function showQuestion() {
     const question = quizQuestions[currentQuestion];
     selectedOption = null;
@@ -138,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
       optionButton.className = 'options-container';
       optionButton.textContent = option;
 
+      // Marca a opção escolhida, revela a resposta correta e bloqueia novas escolhas.
       const handleSelectOption = (e) => {
         e.preventDefault();
         if (selectedOption !== null) return;
@@ -165,23 +169,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Salva a pontuação e abre a página dedicada ao resultado do quiz.
   function showResult() {
-    if (title) title.textContent = 'Quiz concluído';
-    optionsContainer.innerHTML = `<p class="result-text" text-align: center; margin: 2rem 0;">Você marcou <strong>${score}</strong> de <strong>${quizQuestions.length * pointsPerQuestion}</strong> pontos!</p>`;
-    selectedOption = null;
-    nextButton.textContent = 'RECOMEÇAR QUIZ';
-    nextButton.disabled = false;
-
-    const handleRestart = (e) => {
-      e.preventDefault();
-      window.location.reload();
-    };
-
-    nextButton.onclick = null;
-    nextButton.addEventListener('click', handleRestart);
-    nextButton.addEventListener('touchend', handleRestart);
+    sessionStorage.setItem('quizResult', JSON.stringify({
+      score,
+      total: quizQuestions.length * pointsPerQuestion
+    }));
+    window.location.href = 'resultPage.html';
   }
 
+  // Valida a resposta atual, soma os pontos e avança para a próxima pergunta ou resultado.
   const handleNextQuestion = (e) => {
     e.preventDefault();
     if (selectedOption === null) return;
@@ -218,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (exitBtn) {
+    // Abre o modal de confirmação antes de sair do quiz.
     const handleExitClick = (e) => {
       e.preventDefault();
       if (exitBtn.disabled) return;
@@ -257,12 +255,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       btnNo.focus();
 
+      // Fecha o modal, reativa o botão de saída e remove o ouvinte do teclado.
       function cleanUp() {
         exitBtn.disabled = false;
         if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
         document.removeEventListener('keydown', onKeyDown);
       }
 
+      // Permite fechar o modal usando a tecla Escape.
       function onKeyDown(evt) {
         if (evt.key === 'Escape') cleanUp();
       }
@@ -272,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btnNo.addEventListener('click', cleanUp);
       btnNo.addEventListener('touchend', cleanUp);
 
+      // Redireciona para a página inicial depois da confirmação de saída.
       const confirmExit = (evt) => {
         evt.preventDefault();
         setTimeout(() => { window.location.href = '../../index.html'; }, 150);
