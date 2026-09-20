@@ -40,8 +40,8 @@ html, body {
 }
 /* Cria o círculo branco que envolve a logo da INTEG. */
 .logo-area .logo-circle{
-    width: 10vw;
-    height: 10vw;
+    width: 15vw;
+    height: auto;
     background-color: white;
     border-radius: 50%;
     display: flex;
