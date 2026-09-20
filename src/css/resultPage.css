@@ -38,8 +38,8 @@ body {
 
 /* Circulo branco da logo da INTEG. */
 .logo-area .logo-circle {
-  width: 10vw;
-  height: 10vw;
+  width: 15vw;
+  height: 15vw;
   background-color: white;
   border-radius: 50%;
   display: flex;
@@ -50,8 +50,8 @@ body {
 }
 
 .logo-image {
-  width: 80%;
-  height: 80%;
+  width: 60%;
+  height: auto;
   object-fit: contain;
 }
 
