@@ -46,10 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultText = document.querySelector('.result-text');
   const savedResult = JSON.parse(sessionStorage.getItem('quizResult') || '{}');
   const score = Number.isFinite(savedResult.score) ? savedResult.score : 0;
-  const total = Number.isFinite(savedResult.total) ? savedResult.total : 0;
+  const total = Number.isFinite(savedResult.total) ? savedResult.total : 100;
 
   if (resultText) {
-    resultText.innerHTML = `Você marcou <strong>${score}</strong> de <strong>${total}</strong> pontos!`;
+    const formattedScore = Number(score).toFixed(1);
+    const formattedTotal = Number(total).toFixed(1);
+    resultText.innerHTML = `Você marcou <strong>${formattedScore}</strong> de <strong>${formattedTotal}</strong> pontos!`;
   }
 
   // Retorna ao início do quiz para permitir uma nova tentativa.
