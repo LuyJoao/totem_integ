@@ -1,0 +1,319 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(180deg, #13317A 0%, #1E4798 50%, #122864 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Botao invisivel de tela cheia. */
+#exit-fullscreen-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 10vw;
+  height: 10vw;
+  background: transparent;
+  border: none;
+  outline: none;
+  z-index: 9998;
+  cursor: pointer;
+}
+
+/* Circulo branco da logo da INTEG. */
+.logo-area .logo-circle {
+  width: 15vw;
+  height: 15vw;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.3);
+  margin-bottom: 1rem;
+}
+
+.logo-image {
+  width: 60%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Cartao principal da tela de resultado. */
+.result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  height: 58vh;
+  padding: 2.5vh 4vw;
+  background: #F4F9FE;
+  box-shadow: 0 1vw 3vw rgba(0, 0, 0, 0.25);
+  border-radius: 5vw;
+}
+
+.result-title {
+  color: #122555;
+  font-weight: 800;
+  font-size: 2.5vw;
+  text-align: center;
+}
+
+/* Texto da pontuacao final. */
+.result-text {
+  color: #122555;
+  font-size: 3.5vw;
+  font-weight: 700;
+  text-align: center;
+  padding: 3vh 2vw;
+}
+
+.next-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.next-button {
+  background: #13317A;
+  border: none;
+  width: 60vw;
+  height: 5vw;
+  color: #FFFFFF;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 2vw;
+}
+
+.next-button:active {
+  transform: scale(0.97);
+  background: #0e2865;
+}
+
+.exit-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vh;
+}
+
+.exit-text {
+  font-weight: 600;
+  font-size: 2vw;
+  text-align: center;
+  text-decoration-line: underline;
+  text-underline-offset: 20%;
+  text-decoration-thickness: 7%;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #000000;
+  font-family: inherit;
+}
+
+.exit-text:hover {
+  color: #13317A;
+}
+
+/* Fundo e janela do modal de confirmacao. */
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.confirm-modal {
+  background: #FFFFFF;
+  color: #122555;
+  padding: 3vh 4vw;
+  border-radius: 2vw;
+  box-shadow: 0 1vw 4vw rgba(0, 0, 0, 0.25);
+  text-align: center;
+  width: 70vw;
+}
+
+.confirm-modal p {
+  margin: 0 0 2vh;
+  font-weight: 800;
+  font-size: 2.5vw;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 2vw;
+  justify-content: center;
+}
+
+.confirm-actions button {
+  padding: 1.5vh 4vw;
+  border-radius: 1vw;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 2vw;
+  font-family: inherit;
+}
+
+.confirm-actions .confirm-cancel {
+  background: #E9EEF7;
+  color: #122555;
+}
+
+.confirm-actions .confirm-confirm {
+  background: #122555;
+  color: #ffffff;
+}
+
+/* Ajustes da tela de resultado para celulares. */
+@media (max-width: 600px) {
+  html,
+  body {
+    min-height: 100dvh;
+  }
+
+  .logo-area .logo-circle {
+    width: clamp(4.5rem, 22vw, 7rem);
+    height: clamp(4.5rem, 22vw, 7rem);
+    margin-top: 0.5rem;
+  }
+
+  .logo-image {
+    width: clamp(2.5rem, 13vw, 4rem);
+  }
+
+  .result-container {
+    min-height: 0;
+    padding: 1rem 0.75rem;
+    margin: 0.625rem;
+    border-radius: 2rem;
+  }
+
+  .result-title {
+    width: 94%;
+    font-size: clamp(1rem, 5vw, 1.4rem);
+    line-height: 1.25;
+  }
+
+  .result-text {
+    font-size: clamp(1.25rem, 6vw, 2rem);
+    padding: 3vh 2vw;
+  }
+
+  .next-button {
+    width: 100%;
+    max-width: 25rem;
+    height: 3.25rem;
+    font-size: 0.9rem;
+  }
+
+  .exit-area {
+    margin-top: 0.75rem;
+  }
+
+  .exit-text {
+    font-size: 3vw;
+  }
+
+  .confirm-modal {
+    width: calc(80vw - 1rem);
+    padding: 1.5rem 1rem;
+    border-radius: 1.25rem;
+  }
+
+  .confirm-modal p {
+    font-size: clamp(0.75rem, 5vw, 1.3rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .confirm-actions {
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .confirm-actions button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.75rem 1rem;
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    border-radius: 0.75rem;
+  }
+}
+
+/* Ajustes da tela de resultado para computadores e notebooks. */
+@media (min-width: 601px) and (max-width: 1599px) {
+  .logo-area .logo-circle {
+    width: clamp(7rem, 10vw, 10rem);
+    height: clamp(7rem, 10vw, 10rem);
+    margin-top: 0.5rem;
+  }
+
+  .logo-image {
+    width: 4.5rem;
+  }
+
+  .result-container {
+    width: 30em;
+    min-height: 30rem;
+    height: auto;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 70px;
+  }
+
+  .result-title {
+    font-size: 23px;
+  }
+
+  .result-text {
+    font-size: 32px;
+  }
+
+  .next-button {
+    width: 20rem;
+    height: 3.5rem;
+    font-size: inherit;
+  }
+
+  .exit-text {
+    font-size: 15px;
+  }
+
+  .confirm-modal {
+    width: min(60vw, 32rem);
+  }
+
+  .confirm-modal p {
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+  }
+
+  .confirm-actions button {
+    flex: 1 1 8rem;
+    font-size: clamp(1rem, 1.5vw, 1rem);
+    max-width: 10rem;
+  }
+}
