@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const total = Number.isFinite(savedResult.total) ? savedResult.total : 100;
 
   if (resultText) {
-    const formattedScore = Number(score).toFixed(1);
-    const formattedTotal = Number(total).toFixed(1);
+    const formattedScore = Math.round(Number(score));
+    const formattedTotal = Math.round(Number(total));
     resultText.innerHTML = `Você marcou <strong>${formattedScore}</strong> de <strong>${formattedTotal}</strong> pontos!`;
   }
 

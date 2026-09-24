@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const maxScore = 100;
   const pointsPerQuestion = maxScore / quizQuestions.length;
-  const formatScore = (value) => Number(value.toFixed(1));
+  const formatScore = (value) => Math.round(value * 10) / 10;
   let currentQuestion = 0;
   let score = 0;
   let selectedOption = null;
