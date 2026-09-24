@@ -22,7 +22,7 @@ Aplicação web estática para um totem interativo da Incubadora Tecnológica de
 
 Acesse a aplicação hospedada em:
 
-https://luyjoao.github.io/totem_integ/
+https://totem-integ.web.app/index.html
 
 ## Como executar
 
