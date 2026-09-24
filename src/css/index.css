@@ -7,6 +7,26 @@
   -webkit-touch-callout: none;
 }
 
+/* --- TAMANHOS ÚNICOS (logo e cards) --- */
+/* Fallback simples para qualquer navegador. */
+:root {
+  --logo-size: 30vw;
+  --card-size: 22vw;
+  --qu: 1.6vw; /* unidade de escala do quiz, do resultado e do modal */
+  --qr-size: 14vw; /* quadrado branco do QR Code de presença */
+}
+
+/* Escala pela menor dimensão (largura ou altura): funciona no totem
+   vertical 4K, no notebook e no celular, sem depender de breakpoint. */
+@supports (width: min(1vw, 1vh)) {
+  :root {
+    --logo-size: max(5rem, min(38vw, 18vh));
+    --card-size: max(4.5rem, min(22vw, 14vh));
+    --qu: min(1.6vw, 1.2vh);
+    --qr-size: max(6rem, min(14vw, 9vh));
+  }
+}
+
 html, body {
   width: 100%;
   min-height: 100%;
@@ -21,12 +41,95 @@ html, body {
   align-items: center;
 }
 
+/* --- TELAS (uma por vez) --- */
 .screen {
   display: none;
+  width: 100%;
 }
 
 .screen.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 100vh;
+}
+
+/* --- TELA DO QUIZ: card centralizado na tela, sem ficar colado embaixo --- */
+/* O padding inferior espelha o espaço ocupado pela logo no topo. */
+#screen-quiz.active {
+  justify-content: flex-start;
+  padding: 3vh 0 calc(3vh + var(--logo-size) + 1rem);
+}
+
+#screen-quiz .quiz-container {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* --- TELA FINAL: logo, resultado e carrosséis (igual à home) --- */
+#screen-result.active {
+  justify-content: space-between;
+  gap: 2vh;
+  padding: 3vh 0 1vh;
+}
+
+#screen-result .result-container {
+  height: auto;
+  min-height: max(20rem, 26vh);
+}
+
+/* --- LOGO DA INTEG (mesmo tamanho em todas as telas) --- */
+/* O prefixo .screen dá prioridade sobre as regras de quizPage.css e resultPage.css. */
+.screen .logo-area .logo-circle {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  margin: 0 auto 1rem;
+  flex-shrink: 0;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1vw 3vw rgba(0,0,0,0.3);
+}
+
+.screen .logo-area .logo-circle img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+/* --- CARDS DAS EMPRESAS (home e carrossel do quiz): sempre quadrados --- */
+.screen .partner-card,
+.screen #result-carousel .partner-card {
+  box-sizing: border-box;
+  flex: 0 0 var(--card-size);
+  width: var(--card-size);
+  height: var(--card-size);
+  min-width: var(--card-size);
+  min-height: var(--card-size);
+  margin: 0 calc(var(--card-size) * 0.1);
+  border-radius: calc(var(--card-size) * 0.14);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.12),
+    0 0.08rem 0.2rem rgba(0, 0, 0, 0.08);
+}
+
+.screen .partner-card img,
+.screen #result-carousel .partner-card img {
   display: block;
+  flex: 0 0 auto;
+  width: 80%;
+  height: 80%;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  object-fit: contain;
 }
 
 /* --- OVERLAY INICIAL DE TOQUE --- */
@@ -63,6 +166,46 @@ html, body {
   cursor: pointer;
 }
 
+/* --- QR CODE DE PRESENÇA (canto superior direito, todas as telas) --- */
+/* Fica abaixo do botão invisível de tela cheia (z-index 9998). */
+#qr-presenca {
+  position: fixed;
+  top: 2vh;
+  right: 2vw;
+  width: var(--qr-size);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+#qr-presenca .qr-box {
+  width: var(--qr-size);
+  height: var(--qr-size);
+  padding: 6%;
+  background-color: white;
+  border-radius: 8%;
+  box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.25);
+}
+
+#qr-presenca .qr-box img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#qr-presenca .qr-label {
+  margin-top: 0.5em;
+  color: white;
+  font-size: 0.8rem;
+  font-size: max(0.8rem, calc(var(--qr-size) * 0.12));
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
 /* --- ESTRUTURA PARA TOTEM VERTICAL 4K --- */
 .container {
   display: flex;
@@ -73,25 +216,6 @@ html, body {
   min-height: 100vh;
   height: auto;
   text-align: center;
-}
-
-/* Logo Superior Redonda */
-.logo-area .logo-circle {
-  width: 38vw;
-  height: 38vw;
-  background-color: white;
-  border-radius: 50%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 1vw 3vw rgba(0,0,0,0.3);
-}
-
-.logo-area img {
-  width: 80%;
-  height: 80%;
-  object-fit: contain;
 }
 
 /* Títulos da Página */
@@ -118,7 +242,7 @@ html, body {
   letter-spacing: 20%;
 }
 .title-area #sub-title {
-  /* Transformando ideias em negócios inovadores desde 2005. */
+  /* Transformando ideias em negócios inovadores desde 2002. */
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
@@ -135,9 +259,12 @@ html, body {
 .btn-quiz {
   background-color: #ffcc00;
   color: #000;
-  font-size: 4.5vw;
+  font-size: 4vw;
+  font-size: clamp(1.25rem, min(4vw, 3vh), 6rem);
   font-weight: bold;
-  padding: 2.5vh 12vw;
+  line-height: 1.2;
+  white-space: nowrap;
+  padding: 0.9em 2.2em;
   border: none;
   border-radius: 100px;
   cursor: pointer;
@@ -191,27 +318,6 @@ html, body {
   animation: scrollRight 50s linear infinite;
 }
 
-/* Cards de Logotipos */
-.partner-card {
-  width: 22vw;
-  height: 22vw;
-  background-color: white;
-  border-radius: 3vw;
-  margin: 0 1.8vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.12),
-    0 0.08rem 0.2rem rgba(0, 0, 0, 0.08);
-}
-
-.partner-card img {
-  width: 80%;
-  height: 80%;
-  object-fit: contain;
-}
-
 /* KEYFRAMES DO LOOP INFINITO CONTINUO (-50%) */
 @keyframes scrollLeft {
   0% { transform: translateX(0); }
@@ -247,11 +353,6 @@ html, body {
     justify-content: space-between;
   }
 
-  .logo-area .logo-circle {
-    width: clamp(5rem, 24vw, 7rem);
-    height: clamp(5rem, 24vw, 7rem);
-  }
-
   .title-area h1 {
     font-size: clamp(1.6rem, 8vw, 2.4rem);
     margin-bottom: 0.5rem;
@@ -260,12 +361,6 @@ html, body {
   .title-area p {
     font-size: clamp(0.8rem, 4vw, 1.1rem);
     letter-spacing: 1px;
-  }
-
-  .btn-quiz {
-    width: min(85vw, 22rem);
-    font-size: clamp(1rem, 5vw, 1.35rem);
-    padding: 0.9rem 1.5rem;
   }
 
   .partners-section {
@@ -281,17 +376,10 @@ html, body {
   .carousel-container {
     margin-bottom: 1rem;
   }
-
-  .partner-card {
-    width: clamp(5rem, 22vw, 7rem);
-    height: clamp(5rem, 22vw, 7rem);
-    border-radius: 1rem;
-    margin: 0 0.5rem;
-  }
 }
 
 /* Computadores e notebooks */
-@media (min-width: 601px) and (max-width: 1600px) {
+@media (min-width: 601px) and (max-width: 1599px) {
   html,
   body {
     min-height: 100vh;
@@ -308,23 +396,12 @@ html, body {
     justify-content: space-between;
   }
 
-  .logo-area .logo-circle {
-    width: clamp(7rem, 10vw, 10rem);
-    height: clamp(7rem, 10vw, 10rem);
-    margin-top: 0.5rem;
-  }
-
   .title-area h1 {
     font-size: clamp(2rem, 3.5vw, 3.5rem);
   }
 
   .title-area p {
     font-size: clamp(1rem, 1.8vw, 1.5rem);
-  }
-
-  .btn-quiz {
-    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
-    padding: 1rem clamp(3rem, 6vw, 6rem);
   }
 
   .partners-section {
@@ -335,14 +412,116 @@ html, body {
     font-size: clamp(1rem, 1.5vw, 1.4rem);
   }
 
-  .partner-card {
-    width: clamp(7rem, 10vw, 7rem);
-    height: clamp(7rem, 10vw, 7rem);
-    border-radius: 1.5rem;
-    margin: 0 0.75rem;
-  }
-
   .carousel-container {
     margin-bottom: 1rem;
+  }
+}
+
+/* =========================================================
+   QUIZ, RESULTADO E MODAL DE SAÍDA MAIORES
+   Tudo escala pela unidade --qu (menor dimensão da tela).
+   Vale de 601px para cima; celulares seguem as regras do quizPage.css.
+   O prefixo #screen-... / .confirm-overlay dá prioridade sobre
+   quizPage.css e resultPage.css.
+   ========================================================= */
+@media (min-width: 601px) {
+
+  /* --- QUIZ --- */
+  #screen-quiz .quiz-container {
+    width: calc(var(--qu) * 50);
+    height: auto;
+    min-height: calc(var(--qu) * 52);
+    padding: calc(var(--qu) * 2.5) calc(var(--qu) * 3);
+    border-radius: calc(var(--qu) * 4);
+  }
+
+  #screen-quiz .num-question-container {
+    width: 92%;
+    margin-top: 0;
+  }
+
+  #screen-quiz .num-question {
+    font-size: calc(var(--qu) * 2.2);
+  }
+
+  #screen-quiz .Title {
+    width: 90%;
+    font-size: calc(var(--qu) * 2.5);
+  }
+
+  #screen-quiz .question-container {
+    margin-top: calc(var(--qu) * 2.5);
+  }
+
+  #screen-quiz .options-container {
+    width: calc(var(--qu) * 44);
+    max-width: 100%;
+    height: auto;
+    min-height: calc(var(--qu) * 5.2);
+    padding: calc(var(--qu) * 0.8) calc(var(--qu) * 1.5);
+    margin-bottom: calc(var(--qu) * 1);
+    font-size: calc(var(--qu) * 2.1);
+    border-radius: calc(var(--qu) * 1.2);
+  }
+
+  #screen-quiz .next-button-container {
+    margin-top: calc(var(--qu) * 1);
+  }
+
+  #screen-quiz .next-button,
+  #screen-result .next-button {
+    width: calc(var(--qu) * 38);
+    max-width: 100%;
+    height: calc(var(--qu) * 5.6);
+    font-size: calc(var(--qu) * 2.1);
+  }
+
+  #screen-quiz .exit-area,
+  #screen-result .exit-area {
+    margin-top: calc(var(--qu) * 1.2);
+  }
+
+  #screen-quiz .exit-text,
+  #screen-result .exit-text {
+    font-size: calc(var(--qu) * 1.9);
+  }
+
+  /* --- TELA FINAL --- */
+  #screen-result .result-container {
+    width: calc(var(--qu) * 50);
+    padding: calc(var(--qu) * 2.5) calc(var(--qu) * 3);
+    border-radius: calc(var(--qu) * 4);
+  }
+
+  #screen-result .result-title {
+    font-size: calc(var(--qu) * 2.8);
+  }
+
+  #screen-result .result-text {
+    font-size: calc(var(--qu) * 3.4);
+  }
+
+  /* --- MODAL DE CONFIRMAÇÃO DE SAÍDA --- */
+  .confirm-overlay .confirm-modal {
+    width: calc(var(--qu) * 44);
+    padding: calc(var(--qu) * 3);
+    border-radius: calc(var(--qu) * 2);
+  }
+
+  .confirm-overlay .confirm-modal p {
+    font-size: calc(var(--qu) * 2.5);
+    margin-bottom: calc(var(--qu) * 2);
+  }
+
+  .confirm-overlay .confirm-actions {
+    gap: calc(var(--qu) * 2);
+  }
+
+  .confirm-overlay .confirm-actions button {
+    flex: 1 1 0;
+    max-width: none;
+    padding: calc(var(--qu) * 1.2) calc(var(--qu) * 2);
+    font-size: calc(var(--qu) * 2.1);
+    border-radius: calc(var(--qu) * 1.2);
   }
 }

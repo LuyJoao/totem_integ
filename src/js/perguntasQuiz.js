@@ -5,14 +5,14 @@ window.questions = [
       "Instituto de Tecnologia de Guarapuava",
       "Incubadora Tecnológica de Guarapuava",
       "Integração Empresarial de Guarapuava",
-      "Inovação e Tecnologia Geral"
+      "Inovação e Tecnologia Geral",
     ],
-    answer: 1
+    answer: 1,
   },
   {
     question: "Em que data a INTEG foi criada?",
     options: ["08/12/2002", "22/03/2001", "15/07/2010", "01/01/2000"],
-    answer: 1
+    answer: 0,
   },
   {
     question: "Qual é a natureza jurídica da INTEG?",
@@ -20,34 +20,28 @@ window.questions = [
       "Empresa privada com fins lucrativos",
       "Órgão público municipal",
       "Associação civil sem fins lucrativos, de utilidade pública",
-      "Cooperativa de crédito"
+      "Cooperativa de crédito",
     ],
-    answer: 2
+    answer: 2,
   },
   {
-    question: "Qual certificação CERNE a INTEG conquistou em 2023?",
-    options: ["CERNE 1", "CERNE 2", "CERNE 3", "CERNE 4"],
-    answer: 2
-  },
-  {
-    question: "O que é a NOVATEC?",
+    question: "Qual é a principal finalidade de uma incubadora de empresas?",
     options: [
-      "Um evento anual de startups",
-      "A Agência de Inovação Tecnológica da UNICENTRO",
-      "Uma empresa incubada",
-      "Um programa de bolsas do SEBRAE"
-    ],
-    answer: 1
+      "Substituir a gestão das empresas incubadas",
+      "Apoiar empreendedores e empresas em seu desenvolvimento",
+      "Fiscalizar empresas privadas",
+      "Conceder empréstimos bancários"],
+    answer: 1,
   },
   {
-    question: "Quais instituições apoiaram a criação da INTEG em 2001?",
+    question: "O que é uma empresa incubada?",
     options: [
-      "Apenas a Prefeitura de Guarapuava",
-      "FIEP/SESI/SENAI, com apoio do SEBRAE, ACIG, Prefeitura e UNICENTRO",
-      "Somente o Governo Federal",
-      "Bancos privados da região"
+      "Uma empresa que recebe apoio e acompanhamento da incubadora para desenvolver seu negócio",
+      "Uma empresa que pertence à incubadora",
+      "Uma empresa que atua exclusivamente no setor público",
+      "Uma empresa que não possui fins comerciais",
     ],
-    answer: 1
+    answer: 0,
   },
   {
     question: "Qual é um dos principais objetivos da INTEG?",
@@ -55,48 +49,79 @@ window.questions = [
       "Vender produtos tecnológicos importados",
       "Fiscalizar empresas da região",
       "Apoiar a criação e o desenvolvimento de empresas de base tecnológica",
-      "Financiar obras públicas"
+      "Financiar obras públicas",
     ],
-    answer: 2
+    answer: 2,
   },
   {
-    question: "Qual destes é um segmento das empresas ligadas à INTEG?",
+    question: "O que significa empreendedorismo?",
     options: [
-      "Agricultura e agronegócios",
-      "Mineração de carvão",
-      "Transporte aéreo",
-      "Construção naval"
+      "Apenas abrir uma empresa",
+      "Identificar oportunidades e desenvolver soluções ou negócios",
+      "Trabalhar exclusivamente no setor público",
+      "Investir somente em empresas já consolidadas",
     ],
-    answer: 0
+    answer: 1,
   },
   {
-    question: "A INTEG está vinculada a qual instituição de ensino?",
-    options: ["UTFPR", "UNICENTRO", "UEL", "UFPR"],
-    answer: 1
-  },
-  {
-    question: "Onde a INTEG está localizada?",
-    options: ["Curitiba", "Ponta Grossa", "Guarapuava", "Cascavel"],
-    answer: 2
-  },
-  {
-    question: "Qual é o principal foco das empresas incubadas pela INTEG?",
+    question: "Qual destes benefícios pode ser oferecido por uma incubadora aos empreendedores?",
     options: [
-      "Produção agrícola em larga escala",
-      "Negócios de base tecnológica e inovação",
-      "Venda de veículos",
-      "Atividades financeiras"
+      "Mentorias, capacitações e acesso a networking",
+      "Garantia de lucro",
+      "Isenção de todos os impostos",
+      "Contratação automática de funcionários",
     ],
-    answer: 1
+    answer: 0,
   },
   {
-    question: "Qual das opções abaixo melhor descreve a atuação da INTEG?",
+    question: "O que é inovação?",
     options: [
-      "Apoiar a criação e o desenvolvimento de empresas inovadoras",
-      "Fiscalizar empresas da região",
-      "Produzir energia elétrica",
-      "Executar projetos públicos de infraestrutura"
+      "Fazer sempre exatamente da mesma maneira",
+      "Criar ou implementar soluções que gerem valor e melhorias",
+      "Copiar produtos de outras empresas",
+      "Utilizar somente tecnologias estrangeiras",
     ],
-    answer: 0
-  }
+    answer: 1,
+  },
+  {
+    question: "Qual é a importância do networking para uma empresa incubada?",
+    options: [
+      "Permitir a criação de conexões, parcerias e novas oportunidades de negócio",
+      "Substituir o planejamento estratégico",
+      "Evitar o contato com outras empresas",
+      "Eliminar a necessidade de inovação",
+    ],
+    answer: 0,
+  },
+  {
+    question: "Qual alternativa apresenta um exemplo de ação que pode contribuir para o desenvolvimento de uma startup incubada?",
+    options: [
+      "Mentoria e capacitação em gestão",
+      "Proibição de contato com outras empresas",
+      "Ausência de planejamento",
+      "Redução das oportunidades de networking",
+    ],
+    answer: 0,
+  },
+  {
+    question: "Qual é a importância de uma incubadora tecnológica para o ecossistema de inovação de uma região?",
+    options: [
+      "Concentrar todas as empresas em um único setor",
+      "Estimular empreendedorismo, inovação, geração de negócios e conexão entre diferentes atores",
+      "Substituir universidades e empresas",
+      "Atuar somente como espaço físico para empresas",
+    ],
+    answer: 1,
+  },
+  // Pergunta bônus (mais descontraída)
+  {
+    question: "Se você tivesse uma ideia inovadora e quisesse transformá-la em negócio, qual seria uma das melhores primeiras atitudes?",
+    options: [
+      "Guardar a ideia e não contar para ninguém",
+      "Buscar orientação, validar o problema e conhecer o mercado",
+      "Abrir a empresa imediatamente sem planejamento",
+      "Investir todo o dinheiro disponível antes de testar a ideia",
+    ],
+    answer: 1,
+  },
 ];
