@@ -1,38 +1,38 @@
 # Totem INTEG
 
-Aplicacao web estatica para um totem interativo da Incubadora Tecnologica de Guarapuava (INTEG/UNICENTRO). A aplicacao apresenta a identidade da INTEG, exibe carrosseis de empresas e conduz o visitante por um quiz institucional.
+Aplicação web estática para um totem interativo da Incubadora Tecnológica de Guarapuava (INTEG/UNICENTRO). A interface apresenta a identidade institucional da INTEG, exibe carrosséis com empresas incubadas e graduadas e conduz o visitante por um quiz sobre a incubadora.
 
 ## Funcionalidades
 
-- Tela inicial com logo, titulo institucional e empresas incubadas e graduadas.
-- Carrosseis animados com os logotipos das empresas.
-- Entrada em tela cheia apos o primeiro toque ou clique.
-- Navegacao para o quiz pelo botao **Iniciar o Quiz**.
-- Oito perguntas carregadas dinamicamente pelo JavaScript.
-- Uma pergunta exibida por vez, seguindo a ordem definida no arquivo de perguntas.
-- Cada resposta correta vale 10 pontos.
-- Alternativa correta destacada em verde.
-- Alternativa errada destacada em vermelho e a correta em verde.
-- Resultado final com a pontuacao obtida e a pontuacao maxima.
-- Botao para recomecar o quiz.
-- Confirmacao antes de sair do quiz.
-- Layout responsivo para celulares, tablets, computadores, notebooks e telas grandes/totens.
+- Tela inicial com logo, identidade visual da INTEG, título institucional e seções de empresas incubadas e graduadas.
+- Carrosséis animados com logotipos de empresas em movimento contínuo.
+- Solicitação automática de tela cheia ao abrir a aplicação e ao iniciar o quiz.
+- Overlays de início e confirmação ao sair do quiz.
+- Fluxo de telas com home, quiz e resultado em uma única página.
+- 12 perguntas configuradas em JavaScript, carregadas em ordem pela variável `window.questions`.
+- Seleção de uma alternativa por vez, bloqueando respostas posteriores após a escolha.
+- Destaque visual da alternativa correta em verde e da resposta errada em vermelho.
+- Cálculo de pontuação com total de 100 pontos distribuídos igualmente entre as perguntas.
+- Tela final exibindo a pontuação obtida e permitindo reinício do quiz.
+- Botão secreto no canto superior direito para alternar tela inteira com três cliques rápidos.
+- Bloqueio de menu de contexto e teclas comuns de inspeção para manter o totem em ambiente de apresentação.
+- Layout responsivo para celulares, tablets, notebooks e telas maiores/totens.
 
 ## Acesso online
 
-Acesse a aplicacao hospedada em:
+Acesse a aplicação hospedada em:
 
 https://luyjoao.github.io/totem_integ/
 
 ## Como executar
 
-A aplicacao nao possui dependencias ou etapa de compilacao. Ela pode ser aberta diretamente no navegador:
+A aplicação não possui dependências externas nem etapa de build. Ela pode ser aberta diretamente no navegador:
 
 1. Abra o arquivo `index.html` na raiz do projeto.
-2. Toque ou clique na tela inicial para iniciar o modo tela cheia.
+2. Clique ou toque na tela inicial para iniciar a experiência em tela cheia.
 3. Clique em **Iniciar o Quiz**.
 
-Para evitar restricoes do navegador com arquivos locais, tambem e possivel iniciar um servidor estatico na raiz do projeto:
+Para evitar restrições de arquivos locais em alguns navegadores, também é possível rodar um servidor estático na raiz do projeto:
 
 ```powershell
 python -m http.server 8000
@@ -48,27 +48,28 @@ http://localhost:8000/
 
 ```text
 .
-|-- index.html                    # Entrada da aplicacao
-|-- perguntas-quiz.txt            # Versao copiavel das perguntas
+|-- index.html                     # Estrutura principal da aplicação com os 3 módulos de tela
 |-- README.md
-`-- src/
-    |-- html/
-    |   `-- quizPage.html          # Tela do quiz
-    |-- css/
-    |   |-- index.css              # Estilos da tela inicial
-    |   `-- quizPage.css           # Estilos do quiz e responsividade
-    |-- js/
-    |   |-- index.js               # Tela cheia e navegacao inicial
-    |   |-- perguntasQuiz.js       # Perguntas, alternativas e respostas
-    |   `-- quizPage.js             # Fluxo, selecao e pontuacao do quiz
-    `-- assets/
-        |-- images/                # Logos e imagens usadas na interface
-        `-- logo empresas/         # Arquivos de identidade visual
+|-- src/
+|   |-- css/
+|   |   |-- index.css              # Estilos da tela inicial e carrosséis
+|   |   |-- quizPage.css           # Estilos do quiz, botões, modal e responsividade
+|   |   `-- resultPage.css         # Estilos da tela de resultado
+|   |
+|   |-- js/
+|   |   |-- index.js               # Controle da home, telas e fullscreen
+|   |   |-- perguntasQuiz.js       # Banco de perguntas e respostas do quiz
+|   |   |-- quizPage.js            # Lógica do quiz, pontuação e modal de saída
+|   |   `-- resultPage.js          # Renderização do resultado e reinício do quiz
+|   |
+|   `-- assets/
+|       |-- images/               # Imagens e logos usados na interface
+|       `-- logo empresas/        # Arquivos gráficos de identidade visual
 ```
 
 ## Como alterar as perguntas
 
-Edite `src/js/perguntasQuiz.js`. Cada item deve seguir este formato:
+Edite o arquivo `src/js/perguntasQuiz.js`. Cada item do array deve seguir este formato:
 
 ```js
 {
@@ -83,48 +84,67 @@ Edite `src/js/perguntasQuiz.js`. Cada item deve seguir este formato:
 }
 ```
 
-O campo `answer` usa indice iniciado em zero:
+O campo `answer` usa índice baseado em zero:
 
-- `0` corresponde a primeira alternativa.
-- `1` corresponde a segunda alternativa.
-- `2` corresponde a terceira alternativa.
-- `3` corresponde a quarta alternativa.
+- `0` = primeira alternativa
+- `1` = segunda alternativa
+- `2` = terceira alternativa
+- `3` = quarta alternativa
 
-A pontuacao e definida em `src/js/quizPage.js` pela constante `pointsPerQuestion`. Atualmente, cada acerto vale 10 pontos.
+A pontuação é calculada em `src/js/quizPage.js` com:
 
-## Fluxo do quiz
+```js
+const maxScore = 100;
+const pointsPerQuestion = maxScore / quizQuestions.length;
+```
 
-1. A pagina carrega as perguntas de `window.questions`.
-2. A primeira pergunta e exibida automaticamente.
-3. O participante escolhe uma alternativa.
-4. O sistema mostra o resultado visual da escolha e bloqueia novas alternativas.
-5. O botao **Proxima Pergunta** carrega a proxima questao.
-6. Ao terminar, a pontuacao total e exibida.
-7. O botao **Recomecar Quiz** reinicia a pagina.
+Ou seja, o valor do acerto é distribuído igualmente entre todas as questões, com arredondamento simples final para apresentação.
 
-## Tela cheia e saida
+## Fluxo real da aplicação
 
-Na tela inicial, o primeiro toque ou clique solicita tela cheia. O botao invisivel no canto superior direito alterna o modo de tela cheia apos tres cliques rapidos.
+1. A página carrega a estrutura HTML e os scripts de cada tela.
+2. A tela inicial exibe o logo, a mensagem de abertura e os carrosséis de empresas.
+3. O primeiro clique ou toque ativa a solicitação de tela cheia e oculta o overlay inicial.
+4. O botão **Iniciar o Quiz** chama `window.resetQuiz()` e abre a tela de perguntas.
+5. O quiz exibe uma pergunta por vez e aguarda a escolha do visitante.
+6. Ao selecionar uma opção, a alternativa correta é marcada em verde e a resposta errada em vermelho.
+7. O botão **PRÓXIMA PERGUNTA** fica habilitado somente após seleção.
+8. Quando todas as perguntas forem respondidas, o sistema salva o resultado em `sessionStorage` e mostra a tela final.
+9. A tela final exibe a pontuação e oferece a opção de recomecar ou sair do quiz.
 
-No quiz, o botao **Sair do Quiz** solicita confirmacao antes de retornar para a tela inicial.
+## Tela cheia e saída
+
+- Na tela inicial, o primeiro toque ou clique solicita tela cheia.
+- O botão invisível no canto superior direito alterna entre maximizar e sair da tela cheia após três cliques rápidos.
+- O botão **Sair do Quiz** abre um modal de confirmação para voltar ao início.
+- A mesma lógica existe na tela de resultado para confirmar a saída do quiz.
 
 ## Responsividade
 
-Os estilos em `src/css/quizPage.css` possuem faixas para:
+Os estilos em `src/css/index.css`, `src/css/quizPage.css` e `src/css/resultPage.css` usam media queries para adaptar a interface a diferentes larguras de tela, incluindo:
 
-- Celulares: ate 600px.
-- Tablets: de 601px a 1199px.
-- Computadores e notebooks: de 1200px a 1599px.
-- Monitores grandes e totens 4K: a partir de 1600px.
+- celulares
+- tablets
+- notebooks
+- monitores widescreen
+- totens e telas grandes
 
-A barra de rolagem vertical permanece disponivel como fallback quando o conteudo nao couber na altura da tela.
+A aplicação também evita zoom de página e bloqueia ações de inspeção do navegador para manter a apresentação estável em ambiente de totem.
 
 ## Tecnologias
 
 - HTML5
 - CSS3
 - JavaScript puro
-- Fullscreen API
-- Layout responsivo com media queries
+- Fullscreen API (com prefixos de compatibilidade)
+- Media queries para responsividade
+- SessionStorage para persistência do resultado do quiz
 
-Nao e necessario instalar Node.js, npm ou outras bibliotecas para executar a aplicacao.
+Não é necessário instalar Node.js, npm ou qualquer biblioteca para executar esta aplicação.
+
+## Observações importantes
+
+- O arquivo principal do projeto é `index.html`.
+- O conjunto de perguntas está em `src/js/perguntasQuiz.js` e pode ser alterado sem necessidade de recompilar.
+- A lógica de navegação, cálculo e tela cheia está distribuída entre `src/js/index.js`, `src/js/quizPage.js` e `src/js/resultPage.js`.
+- O comportamento atual da interface foi projetado para uso em totens e exibição em tela cheia, não como uma aplicação tradicional de múltiplas páginas.
